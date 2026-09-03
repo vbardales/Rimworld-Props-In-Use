@@ -1,0 +1,12 @@
+# Ce mod ne contient aucun code : rien a compiler, rien d'intermediaire.
+.build/
+
+# Environnements de developpement
+.vs/
+.vscode/
+.idea/
+
+# Systeme
+Thumbs.db
+desktop.ini
+.DS_Store

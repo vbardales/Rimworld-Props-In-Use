@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+  <!-- Les neuf instruments de "Miniature Props and Decor" (Leo.PropsDecor), branches sur le
+       cadre de "Musical Instruments (Continued)" (Mlie.MusicalInstruments).
+
+       LE GESTE N'EST PAS TOUT A FAIT CELUI D'EPONA, ET C'EST VOULU. Epona est un mod mort : ses
+       defs ne se chargent plus du tout, on les republie donc. Miniature Props est vivant et ses
+       defs se chargent tres bien - les redeclarer creerait dix doublons dans le menu. On patche
+       donc les defs existantes sur place. Meme intention, mecanisme adapte a un mod vivant.
+
+       POURQUOI DES BATIMENTS ET NON DES OBJETS TENUS. Ces props sont des `PropBuildingOnTopBase`
+       posables sur une table. Mlie prevoit exactement ce cas : `isBuilding` a vrai dans
+       `CompProperties_MusicalInstrument`, comme son marimba et son orgue. Le pion vient jouer sur
+       place au lieu d'emporter l'instrument. Aucun doublon avec la guitare *portee* de Mlie : ce
+       sont deux objets de nature differente.
+
+       DEUX COMPOSANTS SONT OBLIGATOIRES, verifie par decompilation de MusicalInstruments.dll.
+       `availableMapInstruments` trie la liste des instruments de la carte ainsi :
+
+           orderby ... , x.TryGetComp<CompQuality>().Quality descending
+
+       et la filtre ainsi :
+
+           x.TryGetComp<CompMusicSpot>().AllowRecreation
+
+       Les deux appels sont SANS garde nulle. Un instrument prive de `CompQuality` ou de
+       `CompProperties_MusicSpot` fait donc lever une NullReferenceException a chaque fois qu'un
+       colon cherche de la musique - pas au chargement, mais en pleine partie. D'ou leur presence
+       systematique ci-dessous, y compris sur des props qui n'ont aucune raison propre d'avoir une
+       qualite.
+
+       LA CASE D'INTERACTION EST LE VRAI PIEGE. Avec `isBuilding`, le pion va en
+       `PathEndMode.InteractionCell`, et Mlie exige que cette case soit soit LIBRE de tout edifice
+       (`TryFindSpotAt`), soit occupee par un siege (`TryFindChairAt`). La case du prop lui-meme ne
+       convient donc pas : il y a la table dessous. On decale d'une case vers le sud, ou se trouve
+       naturellement la chaise. Et comme quatre de ces props sont `rotatable false`, on les rend
+       rotatifs : sans cela leur case d'interaction serait figee au sud, donc contre un mur une
+       fois sur quatre. La rotation ne change rien a leur image, `Graphic_Single` n'ayant qu'une
+       seule face.
+
+       AUCUNE RECHERCHE PREALABLE N'EST AJOUTEE, a la difference du marimba de Mlie. Ces props sont
+       deja construits dans les colonies existantes ; les verrouiller retroactivement derriere une
+       techno retirerait au joueur un decor qu'il possede deja.
+
+       LE METRONOME EST LAISSE DE COTE. C'est le dixieme du menu deroulant, mais on n'en joue pas :
+       en faire un instrument donnerait un colon passant son apres-midi de loisir a regarder un
+       balancier. Il reste un prop.
+
+       GARDE : le socle abstrait de Mlie. C'est le test le plus direct - si
+       `MusicalInstrumentBuildingBase` est la, la DLL qui definit
+       `MusicalInstruments.CompMusicalInstrument` l'est aussi, et une `<li Class="...">` non
+       resolue ne peut pas faire echouer la def entiere. -->
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[@Name="MusicalInstrumentBuildingBase"]</xpath>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <!-- ============================== Accordeon ============================== -->
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="Prop_Accordion"]</xpath>
+          <match Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="Prop_Accordion"]</xpath>
+            <value>
+              <tickerType>Normal</tickerType>
+              <hasInteractionCell>True</hasInteractionCell>
+              <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+              <socialPropernessMatters>true</socialPropernessMatters>
+              <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+              <building>
+                <joyKind>Music</joyKind>
+              </building>
+              <comps>
+                <li>
+                  <compClass>CompQuality</compClass>
+                </li>
+                <li Class="MusicalInstruments.CompProperties_MusicSpot">
+                  <compClass>MusicalInstruments.CompMusicSpot</compClass>
+                  <canBeDisabled>false</canBeDisabled>
+                </li>
+                <li Class="MusicalInstruments.CompProperties_MusicalInstrument">
+                  <compClass>MusicalInstruments.CompMusicalInstrument</compClass>
+                  <easiness>0.3</easiness>
+                  <expressiveness>0.8</expressiveness>
+                  <isBuilding>true</isBuilding>
+                </li>
+                <li Class="MusicalInstruments.CompProp_PlayingMusic">
+                  <soundPlayInstrument>MIC_ElectronicOrgan_Play</soundPlayInstrument>
+                </li>
+              </comps>
+            </value>
+          </match>
+        </li>
+
+        <!-- =============================== Guzheng =============================== -->
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="Prop_Guzheng"]</xpath>
+          <match Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="Prop_Guzheng"]</xpath>
+            <value>
+              <tickerType>Normal</tickerType>
+              <hasInteractionCell>True</hasInteractionCell>
+              <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+              <socialPropernessMatters>true</socialPropernessMatters>
+              <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+              <building>
+                <joyKind>Music</joyKind>
+              </building>
+              <comps>
+                <li>
+                  <compClass>CompQuality</compClass>
+                </li>
+                <li Class="MusicalInstruments.CompProperties_MusicSpot">
+                  <compClass>MusicalInstruments.CompMusicSpot</compClass>
+                  <canBeDisabled>false</canBeDisabled>
+                </li>
+                <li Class="MusicalInstruments.CompProperties_MusicalInstrument">
+                  <compClass>MusicalInstruments.CompMusicalInstrument</compClass>
+                  <easiness>0.25</easiness>
+                  <expressiveness>0.85</expressiveness>
+                  <isBuilding>true</isBuilding>
+                </li>
+                <!-- Cithare sur table, cordes pincees : la balalaika est ce que le catalogue de
+                     Mlie offre de plus proche. -->
+                <li Class="MusicalInstruments.CompProp_PlayingMusic">
+                  <soundPlayInstrument>MIC_Balalaika_Play</soundPlayInstrument>
+                </li>
+              </comps>
+            </value>
+          </match>
+        </li>
+
+        <!-- =============================== Hautbois ============================== -->
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="Prop_Oboe"]</xpath>
+          <match Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="Prop_Oboe"]</xpath>
+            <value>
+              <tickerType>Normal</tickerType>
+              <hasInteractionCell>True</hasInteractionCell>
+              <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+              <socialPropernessMatters>true</socialPropernessMatters>
+              <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+              <building>
+                <joyKind>Music</joyKind>
+              </building>
+              <comps>
+                <li>
+                  <compClass>CompQuality</compClass>
+                </li>
+                <li Class="MusicalInstruments.CompProperties_MusicSpot">
+                  <compClass>MusicalInstruments.CompMusicSpot</compClass>
+                  <canBeDisabled>false</canBeDisabled>
+                </li>
+                <li Class="MusicalInstruments.CompProperties_MusicalInstrument">
+                  <compClass>MusicalInstruments.CompMusicalInstrument</compClass>
+                  <easiness>0.2</easiness>
+                  <expressiveness>0.8</expressiveness>
+                  <isBuilding>true</isBuilding>
+                </li>
+                <!-- Mlie n'a qu'un seul son de vent, l'ocarina. Les trois vents de ce fichier le
+                     partagent donc, faute de mieux : une ligne a changer le jour ou de vrais
+                     echantillons existeront. -->
+                <li Class="MusicalInstruments.CompProp_PlayingMusic">
+                  <soundPlayInstrument>MIC_Ocarina_Play</soundPlayInstrument>
+                </li>
+              </comps>
+            </value>
+          </match>
+        </li>
+
+        <!-- ============================= Caisse claire =========================== -->
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="Prop_Snare_Drum"]</xpath>
+          <match Class="PatchOperationSequence">
+            <operations>
+              <li Class="PatchOperationConditional">
+                <xpath>Defs/ThingDef[defName="Prop_Snare_Drum"]/rotatable</xpath>
+                <!-- Conditionnel et non Replace sec : si l'auteur amont retire un jour la ligne
+                     `rotatable false`, un Replace echouerait bruyamment alors qu'il n'y aurait
+                     plus rien a corriger - la valeur par defaut de `rotatable` etant deja vraie. -->
+                <match Class="PatchOperationReplace">
+                  <xpath>Defs/ThingDef[defName="Prop_Snare_Drum"]/rotatable</xpath>
+                  <value>
+                    <rotatable>true</rotatable>
+                  </value>
+                </match>
+                </li>
+              <li Class="PatchOperationAdd">
+                <xpath>Defs/ThingDef[defName="Prop_Snare_Drum"]</xpath>
+                <value>
+                  <tickerType>Normal</tickerType>
+                  <hasInteractionCell>True</hasInteractionCell>
+                  <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+                  <socialPropernessMatters>true</socialPropernessMatters>
+                  <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+                  <building>
+                    <joyKind>Music</joyKind>
+                  </building>
+                  <comps>
+                    <li>
+                      <compClass>CompQuality</compClass>
+                    </li>
+                    <li Class="MusicalInstruments.CompProperties_MusicSpot">
+                      <compClass>MusicalInstruments.CompMusicSpot</compClass>
+                      <canBeDisabled>false</canBeDisabled>
+                    </li>
+                    <!-- Facile a jouer, peu expressif : c'est tout l'interet d'un tambour pour un
+                         colon sans oreille. -->
+                    <li Class="MusicalInstruments.CompProperties_MusicalInstrument">
+                      <compClass>MusicalInstruments.CompMusicalInstrument</compClass>
+                      <easiness>0.6</easiness>
+                      <expressiveness>0.4</expressiveness>
+                      <isBuilding>true</isBuilding>
+                    </li>
+                    <li Class="MusicalInstruments.CompProp_PlayingMusic">
+                      <soundPlayInstrument>MIC_FrameDrum_Play</soundPlayInstrument>
+                    </li>
+                  </comps>
+                </value>
+              </li>
+            </operations>
+          </match>
+        </li>
+
+        <!-- =============================== Trombone ============================== -->
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="Prop_Trombone"]</xpath>
+          <match Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="Prop_Trombone"]</xpath>
+            <value>
+              <tickerType>Normal</tickerType>
+              <hasInteractionCell>True</hasInteractionCell>
+              <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+              <socialPropernessMatters>true</socialPropernessMatters>
+              <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+              <building>
+                <joyKind>Music</joyKind>
+              </building>
+              <comps>
+                <li>
+                  <compClass>CompQuality</compClass>
+                </li>
+                <li Class="MusicalInstruments.CompProperties_MusicSpot">
+                  <compClass>MusicalInstruments.CompMusicSpot</compClass>
+                  <canBeDisabled>false</canBeDisabled>
+                </li>
+                <li Class="MusicalInstruments.CompProperties_MusicalInstrument">
+                  <compClass>MusicalInstruments.CompMusicalInstrument</compClass>
+                  <easiness>0.35</easiness>
+                  <expressiveness>0.7</expressiveness>
+                  <isBuilding>true</isBuilding>
+                </li>
+                <li Class="MusicalInstruments.CompProp_PlayingMusic">
+                  <soundPlayInstrument>MIC_Ocarina_Play</soundPlayInstrument>
+                </li>
+              </comps>
+            </value>
+          </match>
+        </li>
+
+        <!-- =============================== Trompette ============================= -->
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="Prop_Trumpet"]</xpath>
+          <match Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="Prop_Trumpet"]</xpath>
+            <value>
+              <tickerType>Normal</tickerType>
+              <hasInteractionCell>True</hasInteractionCell>
+              <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+              <socialPropernessMatters>true</socialPropernessMatters>
+              <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+              <building>
+                <joyKind>Music</joyKind>
+              </building>
+              <comps>
+                <li>
+                  <compClass>CompQuality</compClass>
+                </li>
+                <li Class="MusicalInstruments.CompProperties_MusicSpot">
+                  <compClass>MusicalInstruments.CompMusicSpot</compClass>
+                  <canBeDisabled>false</canBeDisabled>
+                </li>
+                <li Class="MusicalInstruments.CompProperties_MusicalInstrument">
+                  <compClass>MusicalInstruments.CompMusicalInstrument</compClass>
+                  <easiness>0.3</easiness>
+                  <expressiveness>0.75</expressiveness>
+                  <isBuilding>true</isBuilding>
+                </li>
+                <li Class="MusicalInstruments.CompProp_PlayingMusic">
+                  <soundPlayInstrument>MIC_Ocarina_Play</soundPlayInstrument>
+                </li>
+              </comps>
+            </value>
+          </match>
+        </li>
+
+        <!-- ================================ Violon =============================== -->
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="Prop_Violin"]</xpath>
+          <match Class="PatchOperationSequence">
+            <operations>
+              <li Class="PatchOperationConditional">
+                <xpath>Defs/ThingDef[defName="Prop_Violin"]/rotatable</xpath>
+                <!-- Conditionnel et non Replace sec : si l'auteur amont retire un jour la ligne
+                     `rotatable false`, un Replace echouerait bruyamment alors qu'il n'y aurait
+                     plus rien a corriger - la valeur par defaut de `rotatable` etant deja vraie. -->
+                <match Class="PatchOperationReplace">
+                  <xpath>Defs/ThingDef[defName="Prop_Violin"]/rotatable</xpath>
+                  <value>
+                    <rotatable>true</rotatable>
+                  </value>
+                </match>
+                </li>
+              <li Class="PatchOperationAdd">
+                <xpath>Defs/ThingDef[defName="Prop_Violin"]</xpath>
+                <value>
+                  <tickerType>Normal</tickerType>
+                  <hasInteractionCell>True</hasInteractionCell>
+                  <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+                  <socialPropernessMatters>true</socialPropernessMatters>
+                  <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+                  <building>
+                    <joyKind>Music</joyKind>
+                  </building>
+                  <comps>
+                    <li>
+                      <compClass>CompQuality</compClass>
+                    </li>
+                    <li Class="MusicalInstruments.CompProperties_MusicSpot">
+                      <compClass>MusicalInstruments.CompMusicSpot</compClass>
+                      <canBeDisabled>false</canBeDisabled>
+                    </li>
+                    <li Class="MusicalInstruments.CompProperties_MusicalInstrument">
+                      <compClass>MusicalInstruments.CompMusicalInstrument</compClass>
+                      <easiness>0.2</easiness>
+                      <expressiveness>0.9</expressiveness>
+                      <isBuilding>true</isBuilding>
+                    </li>
+                    <li Class="MusicalInstruments.CompProp_PlayingMusic">
+                      <soundPlayInstrument>MIC_Violin_Play</soundPlayInstrument>
+                    </li>
+                  </comps>
+                </value>
+              </li>
+            </operations>
+          </match>
+        </li>
+
+        <!-- ============================= Violoncelle ============================= -->
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="Prop_Cello"]</xpath>
+          <match Class="PatchOperationSequence">
+            <operations>
+              <li Class="PatchOperationConditional">
+                <xpath>Defs/ThingDef[defName="Prop_Cello"]/rotatable</xpath>
+                <!-- Conditionnel et non Replace sec : si l'auteur amont retire un jour la ligne
+                     `rotatable false`, un Replace echouerait bruyamment alors qu'il n'y aurait
+                     plus rien a corriger - la valeur par defaut de `rotatable` etant deja vraie. -->
+                <match Class="PatchOperationReplace">
+                  <xpath>Defs/ThingDef[defName="Prop_Cello"]/rotatable</xpath>
+                  <value>
+                    <rotatable>true</rotatable>
+                  </value>
+                </match>
+                </li>
+              <li Class="PatchOperationAdd">
+                <xpath>Defs/ThingDef[defName="Prop_Cello"]</xpath>
+                <value>
+                  <tickerType>Normal</tickerType>
+                  <hasInteractionCell>True</hasInteractionCell>
+                  <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+                  <socialPropernessMatters>true</socialPropernessMatters>
+                  <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+                  <building>
+                    <joyKind>Music</joyKind>
+                  </building>
+                  <comps>
+                    <li>
+                      <compClass>CompQuality</compClass>
+                    </li>
+                    <li Class="MusicalInstruments.CompProperties_MusicSpot">
+                      <compClass>MusicalInstruments.CompMusicSpot</compClass>
+                      <canBeDisabled>false</canBeDisabled>
+                    </li>
+                    <li Class="MusicalInstruments.CompProperties_MusicalInstrument">
+                      <compClass>MusicalInstruments.CompMusicalInstrument</compClass>
+                      <easiness>0.25</easiness>
+                      <expressiveness>0.85</expressiveness>
+                      <isBuilding>true</isBuilding>
+                    </li>
+                    <li Class="MusicalInstruments.CompProp_PlayingMusic">
+                      <soundPlayInstrument>MIC_Cello_Play</soundPlayInstrument>
+                    </li>
+                  </comps>
+                </value>
+              </li>
+            </operations>
+          </match>
+        </li>
+
+        <!-- ================================ Guitare ============================== -->
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="Prop_Guitar"]</xpath>
+          <match Class="PatchOperationSequence">
+            <operations>
+              <li Class="PatchOperationConditional">
+                <xpath>Defs/ThingDef[defName="Prop_Guitar"]/rotatable</xpath>
+                <!-- Conditionnel et non Replace sec : si l'auteur amont retire un jour la ligne
+                     `rotatable false`, un Replace echouerait bruyamment alors qu'il n'y aurait
+                     plus rien a corriger - la valeur par defaut de `rotatable` etant deja vraie. -->
+                <match Class="PatchOperationReplace">
+                  <xpath>Defs/ThingDef[defName="Prop_Guitar"]/rotatable</xpath>
+                  <value>
+                    <rotatable>true</rotatable>
+                  </value>
+                </match>
+                </li>
+              <li Class="PatchOperationAdd">
+                <xpath>Defs/ThingDef[defName="Prop_Guitar"]</xpath>
+                <value>
+                  <tickerType>Normal</tickerType>
+                  <hasInteractionCell>True</hasInteractionCell>
+                  <interactionCellOffset>(0,0,-1)</interactionCellOffset>
+                  <socialPropernessMatters>true</socialPropernessMatters>
+                  <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+                  <building>
+                    <joyKind>Music</joyKind>
+                  </building>
+                  <comps>
+                    <li>
+                      <compClass>CompQuality</compClass>
+                    </li>
+                    <li Class="MusicalInstruments.CompProperties_MusicSpot">
+                      <compClass>MusicalInstruments.CompMusicSpot</compClass>
+                      <canBeDisabled>false</canBeDisabled>
+                    </li>
+                    <li Class="MusicalInstruments.CompProperties_MusicalInstrument">
+                      <compClass>MusicalInstruments.CompMusicalInstrument</compClass>
+                      <easiness>0.5</easiness>
+                      <expressiveness>0.6</expressiveness>
+                      <isBuilding>true</isBuilding>
+                    </li>
+                    <li Class="MusicalInstruments.CompProp_PlayingMusic">
+                      <soundPlayInstrument>MIC_Guitar_Play</soundPlayInstrument>
+                    </li>
+                  </comps>
+                </value>
+              </li>
+            </operations>
+          </match>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

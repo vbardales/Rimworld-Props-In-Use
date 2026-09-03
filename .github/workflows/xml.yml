@@ -1,0 +1,38 @@
+name: xml
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# Ce mod ne contient aucun code : il n'y a rien a compiler. Ce qui peut casser, c'est du XML
+# mal forme, ou un patch dont la garde a saute.
+jobs:
+  xml:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install xmllint
+        run: sudo apt-get update && sudo apt-get install -y libxml2-utils
+
+      - name: Every XML file is well-formed
+        run: find Mod -name '*.xml' -print0 | xargs -0 -r xmllint --noout
+
+      # Ce mod ne se protege ni par LoadFolders ni par PatchOperationFindMod : chaque lot est
+      # enferme dans un PatchOperationConditional teste sur l'existence d'une def du mod source.
+      # Une operation laissee hors garde ecrirait une erreur rouge chez qui n'a pas la source.
+      - name: Every patch file guards its operations
+        run: |
+          set -e
+          faute=0
+          for f in Mod/Patches/*.xml; do
+            racine=$(grep -c '^  <Operation ' "$f" || true)
+            gardes=$(grep -c '^  <Operation Class="PatchOperationConditional">' "$f" || true)
+            if [ "$racine" != "$gardes" ]; then
+              echo "::error file=$f::$racine operations racine, dont seulement $gardes gardees"
+              faute=1
+            fi
+          done
+          exit $faute

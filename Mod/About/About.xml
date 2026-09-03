@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>Props in Use</name>
+  <author>nelim</author>
+  <packageId>nelim.propsinuse</packageId>
+  <supportedVersions>
+    <li>1.6</li>
+  </supportedVersions>
+  <description>Decorative props that already look like something useful, made to actually be that thing.
+
+Prop mods are full of objects that stop at the picture. A guitar on a table is scenery; a fountain in a garden is scenery; a hedge grown from anima bark is scenery. This mod plugs a handful of them into the systems they were clearly drawn for, and changes nothing else about them: same texture, same cost, same place in the build menu.
+
+WHAT IT DOES
+
+- Miniature Props and Decor: the nine instruments on its prop shelf become playable instruments through Musical Instruments (Continued). A colonist walks up, sits down and plays. The metronome is left alone.
+- Miniature Props and Decor: the handheld game console and the ham radio become recreation sources — dexterity play and solitary relaxation. Both already sat in a file called Buildings_Recreation with no recreation type on them.
+- Alpha Props - Parks and Gardens: the seven ornamental fountains become natural meditation foci, scaled by size, and stop counting as artificial construction near other foci.
+- Alpha Props - Parks and Gardens: the anima and gauranlen hedges already carry a meditation focus strength that nothing in the game ever reads. They now feed that strength into nearby anima trees, animus stones and nature shrines, and likewise stop counting against them.
+
+Every change is a guarded patch. If a source mod is absent, its patch does nothing and reports nothing. Nothing here contains another author's files.
+
+No save data of its own. Adding it mid-save is safe; removing it leaves props that are once again only props.</description>
+  <modDependencies />
+  <loadAfter>
+    <li>Ludeon.RimWorld</li>
+    <li>Ludeon.RimWorld.Royalty</li>
+    <li>Ludeon.RimWorld.Ideology</li>
+    <li>Mlie.MusicalInstruments</li>
+    <li>Leo.PropsDecor</li>
+    <li>sarg.alphapropsparks</li>
+    <li>VanillaExpanded.VFEPropsandDecor</li>
+  </loadAfter>
+</ModMetaData>

@@ -1,0 +1,622 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+  <!-- Les sept fontaines ornementales d'"Alpha Props - Parks and Gardens" (sarg.alphapropsparks)
+       deviennent des focus de meditation naturels.
+
+       CE QU'ELLES SONT AUJOURD'HUI : de belles images. Elles portent deja un emetteur de flecks
+       qui fait jaillir l'eau, un `isInert`, une taille et une ombre - tout sauf une raison d'aller
+       s'asseoir devant. Un jardin d'agrement sans usage.
+
+       POURQUOI "Natural" ET NON "Artistic". Les deux se defendaient. C'est `Natural` qui a ete
+       retenu parce que c'est le seul type que le jeu associe a l'eau, aux plantes et au calme -
+       celui des sanctuaires naturels et de l'arbre anima - et parce qu'il est le focus des
+       psycasters tribaux, la voie la plus depourvue de mobilier en jeu de base. `Artistic` est
+       deja bien servi par les sculptures.
+
+       LA FORCE SUIT LA TAILLE, ce qui est la seule echelle objective disponible : la fontaine
+       arabe fait 4x4, les moyennes 3x3, l'obelisque et la carree 2x2. Le sanctuaire naturel
+       vanilla vaut 0,22 pour reference, la pierre d'animus 0,34. La fontaine zen recoit un cran
+       de plus que ses jumelles de meme taille : c'est litteralement son objet.
+
+       LE PIEGE, ET LA MOITIE DE L'INTERET DE CE FICHIER : `artificialForMeditationPurposes` vaut
+       VRAI par defaut. Sans la ligne qui le passe a faux, chacune de ces fontaines compterait
+       comme une construction artificielle dans le rayon de 27,9 de tout focus naturel voisin - et
+       un jardin de fontaines autour d'un arbre anima AFFAIBLIRAIT l'arbre. Le decor le plus
+       evidemment fait pour la meditation jouerait contre elle. Les 31 defs vanilla qui mettent ce
+       champ a faux sont exactement les objets de ce genre.
+
+       Chaque fontaine porte elle-meme la penalite `FocusStrengthOffset_ArtificialBuildings`,
+       copiee du sanctuaire naturel : une fontaine cernee de beton vaut moins qu'une fontaine dans
+       un parc. C'est ce qui empeche de poser sept fontaines dans un couloir d'usine.
+
+       Le `PlaceWorker_ArtificialBuildingsNear` affiche ce rayon a la construction, sans quoi la
+       penalite serait invisible et donc incomprehensible.
+
+       GARDE : chaque fontaine est patchee sous condition de sa propre existence. Et le noeud
+       `comps` est teste separement - cinq des sept en ont deja un (l'emetteur d'eau), deux n'en
+       ont aucun, et ecrire un `<comps>` neuf sur une def qui en possede deja un ecraserait le
+       jaillissement. -->
+
+  <!-- ============================ Fontaine arabe (4x4) ============================ -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="AP_ArabicFountain"]</xpath>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AP_ArabicFountain"]/statBases</xpath>
+          <value>
+            <MeditationFocusStrength>0.28</MeditationFocusStrength>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AP_ArabicFountain"]/building</xpath>
+          <value>
+            <artificialForMeditationPurposes>false</artificialForMeditationPurposes>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AP_ArabicFountain"]</xpath>
+          <value>
+            <placeWorkers>
+              <li>PlaceWorker_ArtificialBuildingsNear</li>
+            </placeWorkers>
+            <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+          </value>
+        </li>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="AP_ArabicFountain"]/comps</xpath>
+          <match Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="AP_ArabicFountain"]/comps</xpath>
+            <value>
+              <li Class="CompProperties_MeditationFocus">
+                <statDef>MeditationFocusStrength</statDef>
+                <focusTypes>
+                  <li>Natural</li>
+                </focusTypes>
+                <offsets>
+                  <li Class="FocusStrengthOffset_ArtificialBuildings">
+                    <radius>27.9</radius>
+                    <curve>
+                      <points>
+                        <li>(0,   0.0)</li>
+                        <li>(5,  -0.06)</li>
+                        <li>(10, -0.12)</li>
+                        <li>(50, -0.22)</li>
+                      </points>
+                    </curve>
+                  </li>
+                </offsets>
+              </li>
+            </value>
+          </match>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="AP_ArabicFountain"]</xpath>
+            <value>
+              <comps>
+                <li Class="CompProperties_MeditationFocus">
+                  <statDef>MeditationFocusStrength</statDef>
+                  <focusTypes>
+                    <li>Natural</li>
+                  </focusTypes>
+                  <offsets>
+                    <li Class="FocusStrengthOffset_ArtificialBuildings">
+                      <radius>27.9</radius>
+                      <curve>
+                        <points>
+                          <li>(0,   0.0)</li>
+                          <li>(5,  -0.06)</li>
+                          <li>(10, -0.12)</li>
+                          <li>(50, -0.22)</li>
+                        </points>
+                      </curve>
+                    </li>
+                  </offsets>
+                </li>
+              </comps>
+            </value>
+          </nomatch>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+
+  <!-- ============================= Fontaine zen (3x3) ============================= -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="AP_ZenFountain"]</xpath>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AP_ZenFountain"]/statBases</xpath>
+          <value>
+            <MeditationFocusStrength>0.26</MeditationFocusStrength>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AP_ZenFountain"]/building</xpath>
+          <value>
+            <artificialForMeditationPurposes>false</artificialForMeditationPurposes>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AP_ZenFountain"]</xpath>
+          <value>
+            <placeWorkers>
+              <li>PlaceWorker_ArtificialBuildingsNear</li>
+            </placeWorkers>
+            <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+          </value>
+        </li>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="AP_ZenFountain"]/comps</xpath>
+          <match Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="AP_ZenFountain"]/comps</xpath>
+            <value>
+              <li Class="CompProperties_MeditationFocus">
+                <statDef>MeditationFocusStrength</statDef>
+                <focusTypes>
+                  <li>Natural</li>
+                </focusTypes>
+                <offsets>
+                  <li Class="FocusStrengthOffset_ArtificialBuildings">
+                    <radius>27.9</radius>
+                    <curve>
+                      <points>
+                        <li>(0,   0.0)</li>
+                        <li>(5,  -0.06)</li>
+                        <li>(10, -0.12)</li>
+                        <li>(50, -0.22)</li>
+                      </points>
+                    </curve>
+                  </li>
+                </offsets>
+              </li>
+            </value>
+          </match>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="AP_ZenFountain"]</xpath>
+            <value>
+              <comps>
+                <li Class="CompProperties_MeditationFocus">
+                  <statDef>MeditationFocusStrength</statDef>
+                  <focusTypes>
+                    <li>Natural</li>
+                  </focusTypes>
+                  <offsets>
+                    <li Class="FocusStrengthOffset_ArtificialBuildings">
+                      <radius>27.9</radius>
+                      <curve>
+                        <points>
+                          <li>(0,   0.0)</li>
+                          <li>(5,  -0.06)</li>
+                          <li>(10, -0.12)</li>
+                          <li>(50, -0.22)</li>
+                        </points>
+                      </curve>
+                    </li>
+                  </offsets>
+                </li>
+              </comps>
+            </value>
+          </nomatch>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+
+  <!-- ======================= Fontaine a trois vasques (3x3) ======================= -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="AP_ThreeTieredFountain"]</xpath>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AP_ThreeTieredFountain"]/statBases</xpath>
+          <value>
+            <MeditationFocusStrength>0.24</MeditationFocusStrength>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AP_ThreeTieredFountain"]/building</xpath>
+          <value>
+            <artificialForMeditationPurposes>false</artificialForMeditationPurposes>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AP_ThreeTieredFountain"]</xpath>
+          <value>
+            <placeWorkers>
+              <li>PlaceWorker_ArtificialBuildingsNear</li>
+            </placeWorkers>
+            <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+          </value>
+        </li>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="AP_ThreeTieredFountain"]/comps</xpath>
+          <match Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="AP_ThreeTieredFountain"]/comps</xpath>
+            <value>
+              <li Class="CompProperties_MeditationFocus">
+                <statDef>MeditationFocusStrength</statDef>
+                <focusTypes>
+                  <li>Natural</li>
+                </focusTypes>
+                <offsets>
+                  <li Class="FocusStrengthOffset_ArtificialBuildings">
+                    <radius>27.9</radius>
+                    <curve>
+                      <points>
+                        <li>(0,   0.0)</li>
+                        <li>(5,  -0.06)</li>
+                        <li>(10, -0.12)</li>
+                        <li>(50, -0.22)</li>
+                      </points>
+                    </curve>
+                  </li>
+                </offsets>
+              </li>
+            </value>
+          </match>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="AP_ThreeTieredFountain"]</xpath>
+            <value>
+              <comps>
+                <li Class="CompProperties_MeditationFocus">
+                  <statDef>MeditationFocusStrength</statDef>
+                  <focusTypes>
+                    <li>Natural</li>
+                  </focusTypes>
+                  <offsets>
+                    <li Class="FocusStrengthOffset_ArtificialBuildings">
+                      <radius>27.9</radius>
+                      <curve>
+                        <points>
+                          <li>(0,   0.0)</li>
+                          <li>(5,  -0.06)</li>
+                          <li>(10, -0.12)</li>
+                          <li>(50, -0.22)</li>
+                        </points>
+                      </curve>
+                    </li>
+                  </offsets>
+                </li>
+              </comps>
+            </value>
+          </nomatch>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+
+  <!-- ============================ Fontaine ronde (3x3) ============================ -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="AP_RoundFountain"]</xpath>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AP_RoundFountain"]/statBases</xpath>
+          <value>
+            <MeditationFocusStrength>0.22</MeditationFocusStrength>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AP_RoundFountain"]/building</xpath>
+          <value>
+            <artificialForMeditationPurposes>false</artificialForMeditationPurposes>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AP_RoundFountain"]</xpath>
+          <value>
+            <placeWorkers>
+              <li>PlaceWorker_ArtificialBuildingsNear</li>
+            </placeWorkers>
+            <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+          </value>
+        </li>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="AP_RoundFountain"]/comps</xpath>
+          <match Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="AP_RoundFountain"]/comps</xpath>
+            <value>
+              <li Class="CompProperties_MeditationFocus">
+                <statDef>MeditationFocusStrength</statDef>
+                <focusTypes>
+                  <li>Natural</li>
+                </focusTypes>
+                <offsets>
+                  <li Class="FocusStrengthOffset_ArtificialBuildings">
+                    <radius>27.9</radius>
+                    <curve>
+                      <points>
+                        <li>(0,   0.0)</li>
+                        <li>(5,  -0.06)</li>
+                        <li>(10, -0.12)</li>
+                        <li>(50, -0.22)</li>
+                      </points>
+                    </curve>
+                  </li>
+                </offsets>
+              </li>
+            </value>
+          </match>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="AP_RoundFountain"]</xpath>
+            <value>
+              <comps>
+                <li Class="CompProperties_MeditationFocus">
+                  <statDef>MeditationFocusStrength</statDef>
+                  <focusTypes>
+                    <li>Natural</li>
+                  </focusTypes>
+                  <offsets>
+                    <li Class="FocusStrengthOffset_ArtificialBuildings">
+                      <radius>27.9</radius>
+                      <curve>
+                        <points>
+                          <li>(0,   0.0)</li>
+                          <li>(5,  -0.06)</li>
+                          <li>(10, -0.12)</li>
+                          <li>(50, -0.22)</li>
+                        </points>
+                      </curve>
+                    </li>
+                  </offsets>
+                </li>
+              </comps>
+            </value>
+          </nomatch>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+
+  <!-- ========================== Fontaine hexagonale (3x3) ========================= -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="AP_HexagonalFountain"]</xpath>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AP_HexagonalFountain"]/statBases</xpath>
+          <value>
+            <MeditationFocusStrength>0.22</MeditationFocusStrength>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AP_HexagonalFountain"]/building</xpath>
+          <value>
+            <artificialForMeditationPurposes>false</artificialForMeditationPurposes>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AP_HexagonalFountain"]</xpath>
+          <value>
+            <placeWorkers>
+              <li>PlaceWorker_ArtificialBuildingsNear</li>
+            </placeWorkers>
+            <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+          </value>
+        </li>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="AP_HexagonalFountain"]/comps</xpath>
+          <match Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="AP_HexagonalFountain"]/comps</xpath>
+            <value>
+              <li Class="CompProperties_MeditationFocus">
+                <statDef>MeditationFocusStrength</statDef>
+                <focusTypes>
+                  <li>Natural</li>
+                </focusTypes>
+                <offsets>
+                  <li Class="FocusStrengthOffset_ArtificialBuildings">
+                    <radius>27.9</radius>
+                    <curve>
+                      <points>
+                        <li>(0,   0.0)</li>
+                        <li>(5,  -0.06)</li>
+                        <li>(10, -0.12)</li>
+                        <li>(50, -0.22)</li>
+                      </points>
+                    </curve>
+                  </li>
+                </offsets>
+              </li>
+            </value>
+          </match>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="AP_HexagonalFountain"]</xpath>
+            <value>
+              <comps>
+                <li Class="CompProperties_MeditationFocus">
+                  <statDef>MeditationFocusStrength</statDef>
+                  <focusTypes>
+                    <li>Natural</li>
+                  </focusTypes>
+                  <offsets>
+                    <li Class="FocusStrengthOffset_ArtificialBuildings">
+                      <radius>27.9</radius>
+                      <curve>
+                        <points>
+                          <li>(0,   0.0)</li>
+                          <li>(5,  -0.06)</li>
+                          <li>(10, -0.12)</li>
+                          <li>(50, -0.22)</li>
+                        </points>
+                      </curve>
+                    </li>
+                  </offsets>
+                </li>
+              </comps>
+            </value>
+          </nomatch>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+
+  <!-- =========================== Fontaine carree (2x2) =========================== -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="AP_SquareFountain"]</xpath>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AP_SquareFountain"]/statBases</xpath>
+          <value>
+            <MeditationFocusStrength>0.18</MeditationFocusStrength>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AP_SquareFountain"]/building</xpath>
+          <value>
+            <artificialForMeditationPurposes>false</artificialForMeditationPurposes>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AP_SquareFountain"]</xpath>
+          <value>
+            <placeWorkers>
+              <li>PlaceWorker_ArtificialBuildingsNear</li>
+            </placeWorkers>
+            <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+          </value>
+        </li>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="AP_SquareFountain"]/comps</xpath>
+          <match Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="AP_SquareFountain"]/comps</xpath>
+            <value>
+              <li Class="CompProperties_MeditationFocus">
+                <statDef>MeditationFocusStrength</statDef>
+                <focusTypes>
+                  <li>Natural</li>
+                </focusTypes>
+                <offsets>
+                  <li Class="FocusStrengthOffset_ArtificialBuildings">
+                    <radius>27.9</radius>
+                    <curve>
+                      <points>
+                        <li>(0,   0.0)</li>
+                        <li>(5,  -0.06)</li>
+                        <li>(10, -0.12)</li>
+                        <li>(50, -0.22)</li>
+                      </points>
+                    </curve>
+                  </li>
+                </offsets>
+              </li>
+            </value>
+          </match>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="AP_SquareFountain"]</xpath>
+            <value>
+              <comps>
+                <li Class="CompProperties_MeditationFocus">
+                  <statDef>MeditationFocusStrength</statDef>
+                  <focusTypes>
+                    <li>Natural</li>
+                  </focusTypes>
+                  <offsets>
+                    <li Class="FocusStrengthOffset_ArtificialBuildings">
+                      <radius>27.9</radius>
+                      <curve>
+                        <points>
+                          <li>(0,   0.0)</li>
+                          <li>(5,  -0.06)</li>
+                          <li>(10, -0.12)</li>
+                          <li>(50, -0.22)</li>
+                        </points>
+                      </curve>
+                    </li>
+                  </offsets>
+                </li>
+              </comps>
+            </value>
+          </nomatch>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+
+  <!-- ========================== Fontaine obelisque (2x2) ========================== -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="AP_ObeliskFountain"]</xpath>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AP_ObeliskFountain"]/statBases</xpath>
+          <value>
+            <MeditationFocusStrength>0.18</MeditationFocusStrength>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AP_ObeliskFountain"]/building</xpath>
+          <value>
+            <artificialForMeditationPurposes>false</artificialForMeditationPurposes>
+          </value>
+        </li>
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AP_ObeliskFountain"]</xpath>
+          <value>
+            <placeWorkers>
+              <li>PlaceWorker_ArtificialBuildingsNear</li>
+            </placeWorkers>
+            <drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+          </value>
+        </li>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="AP_ObeliskFountain"]/comps</xpath>
+          <match Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="AP_ObeliskFountain"]/comps</xpath>
+            <value>
+              <li Class="CompProperties_MeditationFocus">
+                <statDef>MeditationFocusStrength</statDef>
+                <focusTypes>
+                  <li>Natural</li>
+                </focusTypes>
+                <offsets>
+                  <li Class="FocusStrengthOffset_ArtificialBuildings">
+                    <radius>27.9</radius>
+                    <curve>
+                      <points>
+                        <li>(0,   0.0)</li>
+                        <li>(5,  -0.06)</li>
+                        <li>(10, -0.12)</li>
+                        <li>(50, -0.22)</li>
+                      </points>
+                    </curve>
+                  </li>
+                </offsets>
+              </li>
+            </value>
+          </match>
+          <nomatch Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="AP_ObeliskFountain"]</xpath>
+            <value>
+              <comps>
+                <li Class="CompProperties_MeditationFocus">
+                  <statDef>MeditationFocusStrength</statDef>
+                  <focusTypes>
+                    <li>Natural</li>
+                  </focusTypes>
+                  <offsets>
+                    <li Class="FocusStrengthOffset_ArtificialBuildings">
+                      <radius>27.9</radius>
+                      <curve>
+                        <points>
+                          <li>(0,   0.0)</li>
+                          <li>(5,  -0.06)</li>
+                          <li>(10, -0.12)</li>
+                          <li>(50, -0.22)</li>
+                        </points>
+                      </curve>
+                    </li>
+                  </offsets>
+                </li>
+              </comps>
+            </value>
+          </nomatch>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <PIU_FocusPerAnimaHedge>{2} par haie anima a proximite ({0} / {1})</PIU_FocusPerAnimaHedge>
+  <PIU_FocusPerAnimaHedgeAbstract>{1} par haie anima a proximite (max. {0})</PIU_FocusPerAnimaHedgeAbstract>
+
+  <PIU_FocusPerGauHedge>{2} par haie gauranlen a proximite ({0} / {1})</PIU_FocusPerGauHedge>
+  <PIU_FocusPerGauHedgeAbstract>{1} par haie gauranlen a proximite (max. {0})</PIU_FocusPerGauHedgeAbstract>
+
+</LanguageData>

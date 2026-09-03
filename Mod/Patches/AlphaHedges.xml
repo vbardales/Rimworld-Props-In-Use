@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+  <!-- Les haies anima et gauranlen d'"Alpha Props - Parks and Gardens" (sarg.alphapropsparks)
+       deviennent des offsets de focus de meditation.
+
+       LE CONSTAT QUI JUSTIFIE CE FICHIER. Les deux haies portent deja, dans leurs `statBases` :
+
+           <MeditationFocusStrength>0.22</MeditationFocusStrength>
+
+       et AUCUN `CompProperties_MeditationFocus`. Or cette stat n'est lue que par ce composant :
+       sans lui, la valeur est inerte, exactement comme un `joyKind` sur un batiment qu'aucun
+       `JoyGiverDef` ne sert. L'auteur a manifestement voulu que ces haies comptent pour la
+       meditation ; le jeu ne l'a jamais su.
+
+       POURQUOI DES OFFSETS ET NON DES FOCUS. On aurait pu leur coller le composant manquant. Ce
+       serait le mauvais choix : une haie est un mur lineaire qu'on pose par dizaines de cases, et
+       chaque case serait devenue un focus autonome - une foret de points de meditation identiques
+       autour d'un jardin. Le mecanisme d'offset existe precisement pour ce cas : un objet qui ne
+       se medite pas lui-meme mais qui renforce ce qu'on medite a cote. C'est ce que vanilla fait
+       de la pierre d'animus et des sanctuaires naturels autour de l'arbre anima.
+
+       LE PIEGE, ET C'EST LE MEME QUE POUR LES FONTAINES, EN PIRE.
+       `artificialForMeditationPurposes` vaut VRAI par defaut, et l'arbre anima applique
+       `FocusStrengthOffset_ArtificialBuildings` sur un rayon de 27,9 avec une penalite qui
+       descend jusqu'a -0,5. Entourer son arbre anima de haies anima - le geste le plus evident
+       que ce mod suggere - AFFAIBLIT donc l'arbre aujourd'hui, et d'autant plus qu'on en pose.
+       Les deux premieres operations de ce fichier corrigent cela a elles seules ; le reste est
+       du bonus.
+
+       LES DEUX HAIES SONT TRAITEES A L'IDENTIQUE. Dans le mod source elles ne different que par
+       leur texture : meme cout, meme socle, meme 0,22, meme description mot pour mot. Les separer
+       ici serait inventer une distinction que l'auteur n'a pas faite.
+
+       ON N'ATTACHE RIEN A L'ARBRE GAURANLEN : verifie dans `Plants_Special.xml`, l'arbre
+       gauranlen n'a aucun `CompProperties_MeditationFocus` en jeu de base. Il n'y a pas d'offsets
+       ou l'accrocher. Les quatre cibles ci-dessous sont donc les quatre focus naturels de
+       Royalty.
+
+       ON N'ECRIT PAS DANS LE `<defs>` DE VANILLA, on ajoute un `FocusStrengthOffset_BuildingDefs`
+       neuf a cote. Ecrire dans celui de vanilla marcherait, mais son `explanationKey` a un nombre
+       fixe d'arguments : les haies compteraient sans jamais apparaitre dans l'infobulle, qui
+       continuerait a ne parler que de pierres d'animus. Une entree separee porte sa propre
+       explication. -->
+
+  <!-- ============ 1. Les haies cessent de compter comme du bati artificiel ============ -->
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="AP_Hedge_Anima"]</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="AP_Hedge_Anima"]/building</xpath>
+      <value>
+        <artificialForMeditationPurposes>false</artificialForMeditationPurposes>
+      </value>
+    </match>
+  </Operation>
+
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="AP_Hedge_Gau"]</xpath>
+    <match Class="PatchOperationAdd">
+      <xpath>Defs/ThingDef[defName="AP_Hedge_Gau"]/building</xpath>
+      <value>
+        <artificialForMeditationPurposes>false</artificialForMeditationPurposes>
+      </value>
+    </match>
+  </Operation>
+
+  <!-- ================= 2. Les haies renforcent les focus naturels ================= -->
+  <!-- 0,01 par case, quatre cases au plus, dans un rayon de 9,9 : soit +0,04 par type de haie
+       et +0,08 pour un jardin qui melange les deux. C'est l'echelle de la pierre d'animus
+       (0,02 x 4), pour un objet qui coute 5 buches au lieu d'un bloc de jade. -->
+
+  <!-- ==== Arbre anima ==== -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="Plant_TreeAnima"]/comps/li[@Class="CompProperties_MeditationFocus"]/offsets</xpath>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="AP_Hedge_Anima"]</xpath>
+          <match Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="Plant_TreeAnima"]/comps/li[@Class="CompProperties_MeditationFocus"]/offsets</xpath>
+            <value>
+              <li Class="FocusStrengthOffset_BuildingDefs">
+                <defs>
+                  <AP_Hedge_Anima>0.01</AP_Hedge_Anima>
+                </defs>
+                <radius>9.9</radius>
+                <maxBuildings>4</maxBuildings>
+                <explanationKey>PIU_FocusPerAnimaHedge</explanationKey>
+                <explanationKeyAbstract>PIU_FocusPerAnimaHedgeAbstract</explanationKeyAbstract>
+              </li>
+            </value>
+          </match>
+        </li>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="AP_Hedge_Gau"]</xpath>
+          <match Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="Plant_TreeAnima"]/comps/li[@Class="CompProperties_MeditationFocus"]/offsets</xpath>
+            <value>
+              <li Class="FocusStrengthOffset_BuildingDefs">
+                <defs>
+                  <AP_Hedge_Gau>0.01</AP_Hedge_Gau>
+                </defs>
+                <radius>9.9</radius>
+                <maxBuildings>4</maxBuildings>
+                <explanationKey>PIU_FocusPerGauHedge</explanationKey>
+                <explanationKeyAbstract>PIU_FocusPerGauHedgeAbstract</explanationKeyAbstract>
+              </li>
+            </value>
+          </match>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+
+  <!-- ==== Pierre d'animus ==== -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="AnimusStone"]/comps/li[@Class="CompProperties_MeditationFocus"]/offsets</xpath>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="AP_Hedge_Anima"]</xpath>
+          <match Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="AnimusStone"]/comps/li[@Class="CompProperties_MeditationFocus"]/offsets</xpath>
+            <value>
+              <li Class="FocusStrengthOffset_BuildingDefs">
+                <defs>
+                  <AP_Hedge_Anima>0.01</AP_Hedge_Anima>
+                </defs>
+                <radius>9.9</radius>
+                <maxBuildings>4</maxBuildings>
+                <explanationKey>PIU_FocusPerAnimaHedge</explanationKey>
+                <explanationKeyAbstract>PIU_FocusPerAnimaHedgeAbstract</explanationKeyAbstract>
+              </li>
+            </value>
+          </match>
+        </li>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="AP_Hedge_Gau"]</xpath>
+          <match Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="AnimusStone"]/comps/li[@Class="CompProperties_MeditationFocus"]/offsets</xpath>
+            <value>
+              <li Class="FocusStrengthOffset_BuildingDefs">
+                <defs>
+                  <AP_Hedge_Gau>0.01</AP_Hedge_Gau>
+                </defs>
+                <radius>9.9</radius>
+                <maxBuildings>4</maxBuildings>
+                <explanationKey>PIU_FocusPerGauHedge</explanationKey>
+                <explanationKeyAbstract>PIU_FocusPerGauHedgeAbstract</explanationKeyAbstract>
+              </li>
+            </value>
+          </match>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+
+  <!-- ==== Petit sanctuaire naturel ==== -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="NatureShrine_Small"]/comps/li[@Class="CompProperties_MeditationFocus"]/offsets</xpath>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="AP_Hedge_Anima"]</xpath>
+          <match Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="NatureShrine_Small"]/comps/li[@Class="CompProperties_MeditationFocus"]/offsets</xpath>
+            <value>
+              <li Class="FocusStrengthOffset_BuildingDefs">
+                <defs>
+                  <AP_Hedge_Anima>0.01</AP_Hedge_Anima>
+                </defs>
+                <radius>9.9</radius>
+                <maxBuildings>4</maxBuildings>
+                <explanationKey>PIU_FocusPerAnimaHedge</explanationKey>
+                <explanationKeyAbstract>PIU_FocusPerAnimaHedgeAbstract</explanationKeyAbstract>
+              </li>
+            </value>
+          </match>
+        </li>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="AP_Hedge_Gau"]</xpath>
+          <match Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="NatureShrine_Small"]/comps/li[@Class="CompProperties_MeditationFocus"]/offsets</xpath>
+            <value>
+              <li Class="FocusStrengthOffset_BuildingDefs">
+                <defs>
+                  <AP_Hedge_Gau>0.01</AP_Hedge_Gau>
+                </defs>
+                <radius>9.9</radius>
+                <maxBuildings>4</maxBuildings>
+                <explanationKey>PIU_FocusPerGauHedge</explanationKey>
+                <explanationKeyAbstract>PIU_FocusPerGauHedgeAbstract</explanationKeyAbstract>
+              </li>
+            </value>
+          </match>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+
+  <!-- ==== Grand sanctuaire naturel ==== -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="NatureShrine_Large"]/comps/li[@Class="CompProperties_MeditationFocus"]/offsets</xpath>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="AP_Hedge_Anima"]</xpath>
+          <match Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="NatureShrine_Large"]/comps/li[@Class="CompProperties_MeditationFocus"]/offsets</xpath>
+            <value>
+              <li Class="FocusStrengthOffset_BuildingDefs">
+                <defs>
+                  <AP_Hedge_Anima>0.01</AP_Hedge_Anima>
+                </defs>
+                <radius>9.9</radius>
+                <maxBuildings>4</maxBuildings>
+                <explanationKey>PIU_FocusPerAnimaHedge</explanationKey>
+                <explanationKeyAbstract>PIU_FocusPerAnimaHedgeAbstract</explanationKeyAbstract>
+              </li>
+            </value>
+          </match>
+        </li>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="AP_Hedge_Gau"]</xpath>
+          <match Class="PatchOperationAdd">
+            <xpath>Defs/ThingDef[defName="NatureShrine_Large"]/comps/li[@Class="CompProperties_MeditationFocus"]/offsets</xpath>
+            <value>
+              <li Class="FocusStrengthOffset_BuildingDefs">
+                <defs>
+                  <AP_Hedge_Gau>0.01</AP_Hedge_Gau>
+                </defs>
+                <radius>9.9</radius>
+                <maxBuildings>4</maxBuildings>
+                <explanationKey>PIU_FocusPerGauHedge</explanationKey>
+                <explanationKeyAbstract>PIU_FocusPerGauHedgeAbstract</explanationKeyAbstract>
+              </li>
+            </value>
+          </match>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+  <!-- Deux props de "Miniature Props and Decor" (Leo.PropsDecor) qui sont des loisirs sans en
+       avoir le droit.
+
+       LA CONSOLE. Elle vit dans un fichier nomme `Buildings_Recreation.xml`, sous un menu
+       deroulant nomme `Props_Game`, et sa description plaisante sur le fait qu'on se dispute pour
+       savoir qui l'utilise. L'intention de l'auteur ne laisse aucune place au doute. Elle n'a
+       pourtant aucun `joyKind` : personne ne l'utilise, et surtout pas au point de se disputer.
+
+       LA RADIO AMATEUR. "Une tentative solitaire et serieuse de franchir le vide spatial avec un
+       signal." C'est une description de loisir, et c'est meme une description de loisir SOLITAIRE
+       - d'ou `Meditative`, dont le libelle vanilla est exactement "relaxation solitaire". Le type
+       `Television` a ete ecarte : on n'y regarde rien.
+
+       POURQUOI `Gaming_Dexterity` POUR LA CONSOLE. Le jeu de base ne connait que dix types de
+       loisir - Meditative, Social, Gaming_Dexterity, Gaming_Cerebral, Television, Telescope,
+       HighCulture, Chemical, Gluttonous, Reading. Une console tenue en main est de l'adresse, pas
+       de la reflexion : c'est la meme famille que les fers a cheval et le billard, et non celle
+       des echecs.
+
+       NI L'UNE NI L'AUTRE N'AJOUTE UN TYPE NEUF, et c'est assume. Ce sont des BATIMENTS de plus
+       sur des types deja servis - ce qui reste utile quand la salle commune n'a qu'une table de
+       billard, mais ce n'est pas la denree rare.
+
+       `requireChair` A FAUX DANS LES DEUX CAS. Les vrais meubles de loisir vanilla exigent une
+       chaise adjacente ; un prop, lui, se pose n'importe ou - sur une etagere, sur un rebord, au
+       sol. Exiger une chaise rendrait la moitie des poses inutilisables sans que rien ne
+       l'explique au joueur. Le plateau du jeu d'Ur vanilla fait le meme choix, pour la meme
+       raison.
+
+       GARDE : l'existence de chaque prop. Sans elle, le `<thingDefs>` du JoyGiverDef pointerait
+       dans le vide et la def entiere echouerait. -->
+
+  <!-- ============================== Console de jeu ============================== -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="Prop_GameConsole"]</xpath>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="Prop_GameConsole"]</xpath>
+          <value>
+            <socialPropernessMatters>true</socialPropernessMatters>
+            <building>
+              <joyKind>Gaming_Dexterity</joyKind>
+            </building>
+            <statBases>
+              <JoyGainFactor>1</JoyGainFactor>
+            </statBases>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs</xpath>
+          <value>
+
+            <JobDef>
+              <defName>PIU_PlayGameConsole</defName>
+              <driverClass>JobDriver_SitFacingBuilding</driverClass>
+              <reportString>playing on the game console.</reportString>
+              <joyDuration>4000</joyDuration>
+              <!-- Deux, comme les echecs : la description parle bien de se disputer l'appareil,
+                   pas de jouer a huit dessus. -->
+              <joyMaxParticipants>2</joyMaxParticipants>
+              <joyKind>Gaming_Dexterity</joyKind>
+              <taleOnCompletion>PlayedGame</taleOnCompletion>
+              <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+            </JobDef>
+
+            <JoyGiverDef>
+              <defName>PIU_PlayGameConsole</defName>
+              <giverClass>JoyGiver_InteractBuildingSitAdjacent</giverClass>
+              <baseChance>2</baseChance>
+              <requireChair>false</requireChair>
+              <thingDefs>
+                <li>Prop_GameConsole</li>
+              </thingDefs>
+              <jobDef>PIU_PlayGameConsole</jobDef>
+              <joyKind>Gaming_Dexterity</joyKind>
+              <requiredCapacities>
+                <li>Sight</li>
+                <li>Manipulation</li>
+              </requiredCapacities>
+            </JoyGiverDef>
+
+          </value>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+  <!-- ============================== Radio amateur ============================== -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="Props_Ham_Radio"]</xpath>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="Props_Ham_Radio"]</xpath>
+          <value>
+            <socialPropernessMatters>true</socialPropernessMatters>
+            <building>
+              <joyKind>Meditative</joyKind>
+            </building>
+            <statBases>
+              <JoyGainFactor>1</JoyGainFactor>
+            </statBases>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs</xpath>
+          <value>
+
+            <JobDef>
+              <defName>PIU_ListenHamRadio</defName>
+              <driverClass>JobDriver_SitFacingBuilding</driverClass>
+              <reportString>listening to the radio.</reportString>
+              <joyDuration>4000</joyDuration>
+              <!-- Un seul : c'est tout le propos de la description. -->
+              <joyMaxParticipants>1</joyMaxParticipants>
+              <joyKind>Meditative</joyKind>
+              <allowOpportunisticPrefix>true</allowOpportunisticPrefix>
+            </JobDef>
+
+            <JoyGiverDef>
+              <defName>PIU_ListenHamRadio</defName>
+              <giverClass>JoyGiver_InteractBuildingSitAdjacent</giverClass>
+              <baseChance>2</baseChance>
+              <requireChair>false</requireChair>
+              <thingDefs>
+                <li>Props_Ham_Radio</li>
+              </thingDefs>
+              <jobDef>PIU_ListenHamRadio</jobDef>
+              <joyKind>Meditative</joyKind>
+              <!-- L'ouie, et non la vue : un aveugle ecoute la radio. -->
+              <requiredCapacities>
+                <li>Hearing</li>
+              </requiredCapacities>
+            </JoyGiverDef>
+
+          </value>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

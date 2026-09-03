@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <PIU_FocusPerAnimaHedge>{2} per nearby anima hedge ({0} / {1})</PIU_FocusPerAnimaHedge>
+  <PIU_FocusPerAnimaHedgeAbstract>{1} per nearby anima hedge (max {0})</PIU_FocusPerAnimaHedgeAbstract>
+
+  <PIU_FocusPerGauHedge>{2} per nearby gauranlen hedge ({0} / {1})</PIU_FocusPerGauHedge>
+  <PIU_FocusPerGauHedgeAbstract>{1} per nearby gauranlen hedge (max {0})</PIU_FocusPerGauHedgeAbstract>
+
+</LanguageData>
