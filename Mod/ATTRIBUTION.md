@@ -40,7 +40,10 @@ redeclaring them would create duplicates in the menu.
 - **Author:** Sarg Bjornson
 - **Steam Workshop:** [3146268928](https://steamcommunity.com/sharedfiles/filedetails/?id=3146268928)
 - **Taken:** nothing.
-- **Patched in place:** the seven ornamental fountains, and the anima and gauranlen hedges.
+- **Patched in place:** the seven ornamental fountains, the anima and gauranlen hedges, and the
+  five troughs. The troughs are the only defs whose `thingClass` is replaced: they lose
+  `VFEProps.Building_SubstractsSilver` in exchange for `Building_Storage`, and are given a wood
+  cost in place of the silver charge that class applied.
 
 ## Musical Instruments (Continued)
 

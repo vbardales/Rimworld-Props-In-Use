@@ -5,8 +5,8 @@ Ce fichier sert au dépôt et à rédiger les notes de version Steam ; RimWorld 
 
 ## [1.0.0] — non publié
 
-Première version. RimWorld 1.6. Aucun code, aucune def, aucun fichier d'autrui : quatre fichiers
-de patchs, seize opérations racine, toutes gardées.
+Première version. RimWorld 1.6. Aucun code, aucune def, aucun fichier d'autrui : cinq fichiers
+de patchs, vingt et une opérations racine, toutes gardées.
 
 ### Instruments — 9 props
 
@@ -44,3 +44,23 @@ Elles renforcent désormais les focus naturels voisins — arbre anima, pierre d
 des focus indépendants aurait créé une forêt de points de méditation identiques.
 
 Elles cessent également de compter comme construction artificielle.
+
+### Mangeoires — 5 props
+
+Les cinq auges d'Alpha Props deviennent des mangeoires. Le jeu n'a aucun abreuvoir ni mangeoire :
+le foin se pose au sol et y pourrit. C'est le seul endroit de ce mod où la fonction manquante et
+le prop inutilisé se recouvraient exactement.
+
+Elles deviennent des bâtiments de rangement, pour deux raisons : le filtre, sans lequel une
+« mangeoire » se remplirait d'acier, et surtout `preventDeteriorationOnTop` — le foin n'y pourrit
+plus sous la pluie, donc la mangeoire peut rester au pré plutôt que sous un toit.
+
+**C'est la seule entrée de ce mod qui change un prix.** `thingClass` est un champ unique, et ces
+props portaient déjà `VFEProps.Building_SubstractsSilver`, la classe qui prélève de l'argent à la
+construction au lieu d'un `costList`. Prendre `Building_Storage` y renonce, et les auges
+seraient devenues gratuites : elles reçoivent 25 bois et 400 de travail à la place.
+
+Les trois auges fleuries sont converties comme les deux autres. Les laisser décoratives aurait
+laissé trois props purs debout, ce que ce mod existe précisément pour refuser.
+
+Les cinq reçoivent aussi un libellé et une description français, que le mod d'origine n'a pas.

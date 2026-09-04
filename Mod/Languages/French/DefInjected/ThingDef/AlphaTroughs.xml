@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Les cinq auges d'"Alpha Props - Parks and Gardens", devenues des mangeoires par
+       Mod/Patches/AlphaTroughs.xml. Le mod d'origine n'a pas de traduction française :
+       ces injections portent donc aussi les libellés, pas seulement les descriptions. -->
+
+  <AP_EmptyTrough.label>mangeoire vide</AP_EmptyTrough.label>
+  <AP_EmptyTrough.description>Une mangeoire. Les animaux y mangent directement, et la nourriture qu'elle contient ne se dégrade pas : elle peut donc rester dehors, au pré.</AP_EmptyTrough.description>
+
+  <AP_TroughWithHay.label>mangeoire à foin</AP_TroughWithHay.label>
+  <AP_TroughWithHay.description>Une mangeoire. Les animaux y mangent directement, et la nourriture qu'elle contient ne se dégrade pas : elle peut donc rester dehors, au pré.</AP_TroughWithHay.description>
+
+  <AP_TroughWithFlowersA.label>mangeoire fleurie</AP_TroughWithFlowersA.label>
+  <AP_TroughWithFlowersA.description>Une mangeoire. Les animaux y mangent directement, et la nourriture qu'elle contient ne se dégrade pas : elle peut donc rester dehors, au pré.</AP_TroughWithFlowersA.description>
+
+  <AP_TroughWithFlowersB.label>mangeoire fleurie</AP_TroughWithFlowersB.label>
+  <AP_TroughWithFlowersB.description>Une mangeoire. Les animaux y mangent directement, et la nourriture qu'elle contient ne se dégrade pas : elle peut donc rester dehors, au pré.</AP_TroughWithFlowersB.description>
+
+  <AP_TroughWithFlowersC.label>mangeoire fleurie</AP_TroughWithFlowersC.label>
+  <AP_TroughWithFlowersC.description>Une mangeoire. Les animaux y mangent directement, et la nourriture qu'elle contient ne se dégrade pas : elle peut donc rester dehors, au pré.</AP_TroughWithFlowersC.description>
+
+</LanguageData>

@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+  <!-- The five troughs of "Alpha Props - Parks and Gardens" (sarg.alphapropsparks) become
+       animal feeders.
+
+       WHAT THEY ARE TODAY: five one-tile boxes labelled "trough", with isInert, WorkToBuild 0
+       and no cost. The game has no feeder of any kind - hay is dumped on the floor of a barn and
+       rots there - so the one prop that is literally shaped for the job does nothing.
+
+       WHY Building_Storage AND NOT A STOCKPILE ZONE. Both work. A zone painted over the tile
+       would have needed only surfaceType, and would have cost nothing. Building_Storage was
+       chosen because it carries the storage tab: without a filter the trough would accept
+       whatever the barn stockpile accepts, and a "feeder" that fills with steel is not a feeder.
+       preventDeteriorationOnTop is the second reason, and the one that changes play: hay in a
+       trough no longer rots in the rain, so the trough can stand outdoors in the pasture where
+       the animals actually are.
+
+       ANIMALS CAN REACH IT. The troughs are PassThroughOnly with fillPercent 0.5 - an animal
+       walks onto the tile. That is what matters for eating, not the storage class: food-seeking
+       resolves through ClosestTouch, and a passable tile is touchable. This is the same reason
+       animals raid shelves.
+
+       THE PRICE OF THE CONVERSION, AND WHAT REPLACES IT. These props inherit
+       VFEProps.Building_SubstractsSilver, the class that charges silver at build time in place of
+       a costList. thingClass is a single field: taking Building_Storage gives that up, and the
+       troughs would otherwise become free. They are given 25 wood and WorkToBuild 400 instead -
+       cheaper than a shelf, which is 20 stuff and 500 work but behind research.
+
+       ALL FIVE, NOT JUST THE TWO SENSIBLE ONES. The empty trough and the hay trough are the
+       obvious feeders; the three flower ones are planters by texture. They are converted all the
+       same, because the alternative is to leave three pure props standing - and a prop that stays
+       a prop is exactly what this mod exists to refuse. One function, five looks. Hay stored in a
+       flower trough will draw on top of the flowers.
+
+       THE FILTER IS WIDER THAN THE DEFAULT. Fixed settings allow the whole Foods category, so a
+       player who wants to hand-feed meals to a bonded animal can. Defaults ship hay and kibble
+       only, which is what a trough is for. Note that hay and kibble sit directly under Foods in
+       vanilla, not under FoodRaw - filtering on FoodRaw would have excluded both.
+
+       GUARD: one PatchOperationConditional per trough, each testing its own def. -->
+
+  <!-- ================================= empty trough (AP_EmptyTrough) ================================= -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="AP_EmptyTrough"]</xpath>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AP_EmptyTrough"]</xpath>
+          <value>
+            <thingClass>Building_Storage</thingClass>
+            <surfaceType>Item</surfaceType>
+            <canOverlapZones>false</canOverlapZones>
+            <inspectorTabs>
+              <li>ITab_Storage</li>
+            </inspectorTabs>
+            <costList>
+              <WoodLog>25</WoodLog>
+            </costList>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AP_EmptyTrough"]/description</xpath>
+          <value>
+            <description>A feeding trough. Animals eat directly from it, and food stored inside does not deteriorate, so it can stand out in the open.</description>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AP_EmptyTrough"]/statBases/WorkToBuild</xpath>
+          <value>
+            <WorkToBuild>400</WorkToBuild>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AP_EmptyTrough"]/building</xpath>
+          <value>
+            <storageGroupTag>PIU_Trough</storageGroupTag>
+            <maxItemsInCell>3</maxItemsInCell>
+            <preventDeteriorationOnTop>true</preventDeteriorationOnTop>
+            <ignoreStoredThingsBeauty>true</ignoreStoredThingsBeauty>
+            <blueprintClass>Blueprint_Storage</blueprintClass>
+            <fixedStorageSettings>
+              <filter>
+                <disallowNotEverStorable>true</disallowNotEverStorable>
+                <categories>
+                  <li>Foods</li>
+                </categories>
+              </filter>
+            </fixedStorageSettings>
+            <defaultStorageSettings>
+              <priority>Normal</priority>
+              <filter>
+                <thingDefs>
+                  <li>Hay</li>
+                  <li>Kibble</li>
+                </thingDefs>
+              </filter>
+            </defaultStorageSettings>
+          </value>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+  <!-- ================================= trough with hay (AP_TroughWithHay) ================================= -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="AP_TroughWithHay"]</xpath>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AP_TroughWithHay"]</xpath>
+          <value>
+            <thingClass>Building_Storage</thingClass>
+            <surfaceType>Item</surfaceType>
+            <canOverlapZones>false</canOverlapZones>
+            <inspectorTabs>
+              <li>ITab_Storage</li>
+            </inspectorTabs>
+            <costList>
+              <WoodLog>25</WoodLog>
+            </costList>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AP_TroughWithHay"]/description</xpath>
+          <value>
+            <description>A feeding trough. Animals eat directly from it, and food stored inside does not deteriorate, so it can stand out in the open.</description>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AP_TroughWithHay"]/statBases/WorkToBuild</xpath>
+          <value>
+            <WorkToBuild>400</WorkToBuild>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AP_TroughWithHay"]/building</xpath>
+          <value>
+            <storageGroupTag>PIU_Trough</storageGroupTag>
+            <maxItemsInCell>3</maxItemsInCell>
+            <preventDeteriorationOnTop>true</preventDeteriorationOnTop>
+            <ignoreStoredThingsBeauty>true</ignoreStoredThingsBeauty>
+            <blueprintClass>Blueprint_Storage</blueprintClass>
+            <fixedStorageSettings>
+              <filter>
+                <disallowNotEverStorable>true</disallowNotEverStorable>
+                <categories>
+                  <li>Foods</li>
+                </categories>
+              </filter>
+            </fixedStorageSettings>
+            <defaultStorageSettings>
+              <priority>Normal</priority>
+              <filter>
+                <thingDefs>
+                  <li>Hay</li>
+                  <li>Kibble</li>
+                </thingDefs>
+              </filter>
+            </defaultStorageSettings>
+          </value>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+  <!-- ================================= trough with flowers (AP_TroughWithFlowersA) ================================= -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="AP_TroughWithFlowersA"]</xpath>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AP_TroughWithFlowersA"]</xpath>
+          <value>
+            <thingClass>Building_Storage</thingClass>
+            <surfaceType>Item</surfaceType>
+            <canOverlapZones>false</canOverlapZones>
+            <inspectorTabs>
+              <li>ITab_Storage</li>
+            </inspectorTabs>
+            <costList>
+              <WoodLog>25</WoodLog>
+            </costList>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AP_TroughWithFlowersA"]/description</xpath>
+          <value>
+            <description>A feeding trough. Animals eat directly from it, and food stored inside does not deteriorate, so it can stand out in the open.</description>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AP_TroughWithFlowersA"]/statBases/WorkToBuild</xpath>
+          <value>
+            <WorkToBuild>400</WorkToBuild>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AP_TroughWithFlowersA"]/building</xpath>
+          <value>
+            <storageGroupTag>PIU_Trough</storageGroupTag>
+            <maxItemsInCell>3</maxItemsInCell>
+            <preventDeteriorationOnTop>true</preventDeteriorationOnTop>
+            <ignoreStoredThingsBeauty>true</ignoreStoredThingsBeauty>
+            <blueprintClass>Blueprint_Storage</blueprintClass>
+            <fixedStorageSettings>
+              <filter>
+                <disallowNotEverStorable>true</disallowNotEverStorable>
+                <categories>
+                  <li>Foods</li>
+                </categories>
+              </filter>
+            </fixedStorageSettings>
+            <defaultStorageSettings>
+              <priority>Normal</priority>
+              <filter>
+                <thingDefs>
+                  <li>Hay</li>
+                  <li>Kibble</li>
+                </thingDefs>
+              </filter>
+            </defaultStorageSettings>
+          </value>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+  <!-- ================================= trough with flowers (AP_TroughWithFlowersB) ================================= -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="AP_TroughWithFlowersB"]</xpath>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AP_TroughWithFlowersB"]</xpath>
+          <value>
+            <thingClass>Building_Storage</thingClass>
+            <surfaceType>Item</surfaceType>
+            <canOverlapZones>false</canOverlapZones>
+            <inspectorTabs>
+              <li>ITab_Storage</li>
+            </inspectorTabs>
+            <costList>
+              <WoodLog>25</WoodLog>
+            </costList>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AP_TroughWithFlowersB"]/description</xpath>
+          <value>
+            <description>A feeding trough. Animals eat directly from it, and food stored inside does not deteriorate, so it can stand out in the open.</description>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AP_TroughWithFlowersB"]/statBases/WorkToBuild</xpath>
+          <value>
+            <WorkToBuild>400</WorkToBuild>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AP_TroughWithFlowersB"]/building</xpath>
+          <value>
+            <storageGroupTag>PIU_Trough</storageGroupTag>
+            <maxItemsInCell>3</maxItemsInCell>
+            <preventDeteriorationOnTop>true</preventDeteriorationOnTop>
+            <ignoreStoredThingsBeauty>true</ignoreStoredThingsBeauty>
+            <blueprintClass>Blueprint_Storage</blueprintClass>
+            <fixedStorageSettings>
+              <filter>
+                <disallowNotEverStorable>true</disallowNotEverStorable>
+                <categories>
+                  <li>Foods</li>
+                </categories>
+              </filter>
+            </fixedStorageSettings>
+            <defaultStorageSettings>
+              <priority>Normal</priority>
+              <filter>
+                <thingDefs>
+                  <li>Hay</li>
+                  <li>Kibble</li>
+                </thingDefs>
+              </filter>
+            </defaultStorageSettings>
+          </value>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+  <!-- ================================= trough with flowers (AP_TroughWithFlowersC) ================================= -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="AP_TroughWithFlowersC"]</xpath>
+    <match Class="PatchOperationSequence">
+      <operations>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AP_TroughWithFlowersC"]</xpath>
+          <value>
+            <thingClass>Building_Storage</thingClass>
+            <surfaceType>Item</surfaceType>
+            <canOverlapZones>false</canOverlapZones>
+            <inspectorTabs>
+              <li>ITab_Storage</li>
+            </inspectorTabs>
+            <costList>
+              <WoodLog>25</WoodLog>
+            </costList>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AP_TroughWithFlowersC"]/description</xpath>
+          <value>
+            <description>A feeding trough. Animals eat directly from it, and food stored inside does not deteriorate, so it can stand out in the open.</description>
+          </value>
+        </li>
+
+        <li Class="PatchOperationReplace">
+          <xpath>Defs/ThingDef[defName="AP_TroughWithFlowersC"]/statBases/WorkToBuild</xpath>
+          <value>
+            <WorkToBuild>400</WorkToBuild>
+          </value>
+        </li>
+
+        <li Class="PatchOperationAdd">
+          <xpath>Defs/ThingDef[defName="AP_TroughWithFlowersC"]/building</xpath>
+          <value>
+            <storageGroupTag>PIU_Trough</storageGroupTag>
+            <maxItemsInCell>3</maxItemsInCell>
+            <preventDeteriorationOnTop>true</preventDeteriorationOnTop>
+            <ignoreStoredThingsBeauty>true</ignoreStoredThingsBeauty>
+            <blueprintClass>Blueprint_Storage</blueprintClass>
+            <fixedStorageSettings>
+              <filter>
+                <disallowNotEverStorable>true</disallowNotEverStorable>
+                <categories>
+                  <li>Foods</li>
+                </categories>
+              </filter>
+            </fixedStorageSettings>
+            <defaultStorageSettings>
+              <priority>Normal</priority>
+              <filter>
+                <thingDefs>
+                  <li>Hay</li>
+                  <li>Kibble</li>
+                </thingDefs>
+              </filter>
+            </defaultStorageSettings>
+          </value>
+        </li>
+
+      </operations>
+    </match>
+  </Operation>
+
+</Patch>

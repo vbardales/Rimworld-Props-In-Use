@@ -4,8 +4,9 @@
 
 Prop mods are full of objects that stop at the picture. A guitar on a table is scenery; a
 fountain in a garden is scenery; a hedge grown from anima bark is scenery. This mod plugs a
-handful of them into the systems they were clearly drawn for, and changes nothing else about
-them: same texture, same cost, same place in the build menu.
+handful of them into the systems they were clearly drawn for, and changes as little else as it
+can: same texture, same place in the build menu. Cost is left alone wherever the prop already
+had one — the troughs are the single exception, and the section below says why.
 
 ## What it does
 
@@ -15,6 +16,7 @@ them: same texture, same cost, same place in the build menu.
 | Miniature Props and Decor | game console, ham radio | recreation sources — dexterity play and solitary relaxation |
 | Alpha Props — Parks and Gardens | 7 fountains | natural meditation foci, scaled by size |
 | Alpha Props — Parks and Gardens | anima and gauranlen hedges | focus offsets feeding the natural foci nearby |
+| Alpha Props — Parks and Gardens | 5 troughs | animal feeders — storage buildings that keep feed from rotting |
 
 ## Two findings that justify the mod
 
@@ -33,6 +35,28 @@ A hedge is a linear wall you lay down by the dozen. Giving each cell its own
 meditation spots. The offset mechanism exists for precisely this case: an object you do not
 meditate on, but which strengthens what you meditate on beside it. It is what vanilla does with
 the animus stone and the nature shrines around the anima tree.
+
+## Why the troughs cost wood, when nothing else here changes a price
+
+The game ships no feeder of any kind. Hay goes on the barn floor and rots there. So the five
+props labelled *trough* were the one case where the missing feature and the idle prop matched
+exactly — and the only case in this mod that could not be done by adding a comp.
+
+A trough had to become a `Building_Storage` to carry a filter and, more importantly,
+`preventDeteriorationOnTop`: feed in a trough no longer spoils in the rain, which is what lets
+the trough stand outdoors in the pasture instead of inside a roofed barn. Animals reach it
+because the props are `PassThroughOnly` — an animal walks onto the tile, and food-seeking
+resolves through `ClosestTouch`. The storage class is irrelevant to that; passability is not.
+
+`thingClass` is a single field, and these props already used one:
+`VFEProps.Building_SubstractsSilver`, the class that charges silver at build time in place of a
+`costList`. Taking `Building_Storage` gives that up, and the troughs would otherwise have
+become free. They are given 25 wood and 400 work instead — cheaper than a shelf, which is 20
+stuff and 500 work but sits behind research.
+
+All five are converted, including the three filled with plastic flowers. Leaving those three as
+scenery would have left three pure props standing, which is the one thing this mod exists to
+refuse. One function, five looks; hay stored in a flower trough draws on top of the flowers.
 
 ## Why Natural and not Artistic, for the fountains
 
