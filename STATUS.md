@@ -24,7 +24,7 @@ remaining:
   - unverified: never seen running
 session:      01a09721-3c91-72a3-8e78-5d2c507deb63
 updated:      2026-10-28, repo pushed, remaining refreshed
-protocols_read_sha: 67838c25a6ef98a6bfc300da66b6b496eff10099
+protocols_read_sha: cc1f93006ee3756009054a0389731cff310d8784
 ---
 
 # Props in Use — status
