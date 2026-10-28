@@ -20,13 +20,13 @@ tested_on:
 workshop:
 remaining:
   - open: 1.b licence/licence_at and visibility public to re-confirm (owner chose public 2026-10-28); history of the initial commit holds Docs/CHINESE_MANIFEST.json
-  - open: 1.a duplicate check not done (Search-Workshop needs owner OK)
+  - note: 1.a duplicate check done 2026-10-29 (Search-Workshop, About.xml refs to sarg.alphapropsparks|Leo.PropsDecor, 9416 folders): no duplicate; only ours (Props as Style, Props as Deco), Better Architect Menu, Decor into Props (ferny, unrelated)
   - open: 1.k record the move to makeSources once 1.a and 1.h are done
   - open: check Mod/About/PublishedFileId.txt (3811402847) against workshop field; LICENSE aligned 2026-10-29
   - note: GitHub repo vbardales/Rimworld-Props-In-Use public, pushed e1b7f58 on 2026-10-28
   - unverified: never seen running
 session:      01a09721-3c91-72a3-8e78-5d2c507deb63
-updated:      2026-10-29, front matter completed (1.h)
+updated:      2026-10-29, 1.a duplicate check done
 protocols_read_sha: cc1f93006ee3756009054a0389731cff310d8784
 ---
 
