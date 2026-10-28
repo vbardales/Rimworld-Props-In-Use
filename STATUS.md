@@ -13,18 +13,19 @@ licence:      original
 licence_at:   "2026-10-29: patches only, every source mod is an optional dependency (props mods, RepossessedFurniture); no source file, texture or def shipped; the Chinese source restriction (2877536640) binds RF, not this mod; owner confirmed, visibility public"
 upstream_mod_remotes: N/A
 settings_audit: unchecked
-published:    no
+published:    yes
 dependencies: optional source mods; Chinese bookcase owner nelim.repossessedfurniture
 showcase:     complete
 tested_on:
-workshop:
+workshop:     3811402847
 remaining:
   - note: 1.a duplicate check done 2026-10-29 (Search-Workshop, About.xml refs to sarg.alphapropsparks|Leo.PropsDecor, 9416 folders): no duplicate; only ours (Props as Style, Props as Deco), Better Architect Menu, Decor into Props (ferny, unrelated)
-  - open: check Mod/About/PublishedFileId.txt (3811402847) against workshop field; LICENSE aligned 2026-10-29
+  - note: Workshop item 3811402847 published as 0.1.0, hidden (owner, 2026-10-29)
+  - note: Workshop item 3811402847 published as 0.1.0, hidden (owner, 2026-10-29)
   - note: GitHub repo vbardales/Rimworld-Props-In-Use public, pushed e1b7f58 on 2026-10-28
   - unverified: never seen running
 session:      01a09721-3c91-72a3-8e78-5d2c507deb63
-updated:      2026-10-29, moved to makeSources (1.k)
+updated:      2026-10-29, workshop id 3811402847 recorded, published (owner)
 protocols_read_sha: cc1f93006ee3756009054a0389731cff310d8784
 ---
 
