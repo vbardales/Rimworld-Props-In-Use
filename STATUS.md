@@ -16,11 +16,14 @@ tested_on:
 workshop:
 remaining:
   - open: 1.b licence/licence_at and visibility public to re-confirm (owner chose public 2026-10-28); history of the initial commit holds Docs/CHINESE_MANIFEST.json
-  - open: 1.e/1.f GitHub repo and git remote absent (no remote configured)
-  - open: 1.h STATUS.md front matter incomplete (remote, settings_audit, upstream_mod_remotes)
+  - open: 1.a duplicate check not done (Search-Workshop needs owner OK)
+  - open: 1.h STATUS.md front matter incomplete (remote, settings_audit, upstream_mod_remotes): rebuild from templates/STATUS.template.md
+  - open: 1.k record the move to makeSources once 1.a and 1.h are done
+  - open: check Mod/About/PublishedFileId.txt (3811402847) against workshop field; LICENSE differs root vs Mod/
+  - note: GitHub repo vbardales/Rimworld-Props-In-Use public, pushed e1b7f58 on 2026-10-28
   - unverified: never seen running
 session:      01a09721-3c91-72a3-8e78-5d2c507deb63
-updated:      2026-10-28, replay-audit: back to setupRepo
+updated:      2026-10-28, repo pushed, remaining refreshed
 protocols_read_sha: 67838c25a6ef98a6bfc300da66b6b496eff10099
 ---
 
