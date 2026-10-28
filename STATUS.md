@@ -5,11 +5,15 @@ translation_fr: unchecked
 mod:          Props in Use
 packageId:    nelim.propsinuse
 repo:         Rimworld-Props-In-Use
+remote:       https://github.com/vbardales/Rimworld-Props-In-Use.git
 visibility:   public
 detached:     no
 workflow_stage: setupRepo
 licence:      forbidden
 licence_at:   existing props alive; Chinese source forbidden (2877536640 About lines 17-24); optional patch on the RF-owned def, nothing of the source imported
+upstream_mod_remotes: N/A
+settings_audit: unchecked
+published:    no
 dependencies: optional source mods; Chinese bookcase owner nelim.repossessedfurniture
 showcase:     complete
 tested_on:
@@ -17,13 +21,12 @@ workshop:
 remaining:
   - open: 1.b licence/licence_at and visibility public to re-confirm (owner chose public 2026-10-28); history of the initial commit holds Docs/CHINESE_MANIFEST.json
   - open: 1.a duplicate check not done (Search-Workshop needs owner OK)
-  - open: 1.h STATUS.md front matter incomplete (remote, settings_audit, upstream_mod_remotes): rebuild from templates/STATUS.template.md
   - open: 1.k record the move to makeSources once 1.a and 1.h are done
-  - open: check Mod/About/PublishedFileId.txt (3811402847) against workshop field; LICENSE differs root vs Mod/
+  - open: check Mod/About/PublishedFileId.txt (3811402847) against workshop field; LICENSE aligned 2026-10-29
   - note: GitHub repo vbardales/Rimworld-Props-In-Use public, pushed e1b7f58 on 2026-10-28
   - unverified: never seen running
 session:      01a09721-3c91-72a3-8e78-5d2c507deb63
-updated:      2026-10-28, repo pushed, remaining refreshed
+updated:      2026-10-29, front matter completed (1.h)
 protocols_read_sha: cc1f93006ee3756009054a0389731cff310d8784
 ---
 

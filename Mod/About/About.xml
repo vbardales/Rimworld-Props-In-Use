@@ -13,7 +13,7 @@ Prop mods are full of objects that stop at the picture. A guitar on a table is s
 WHAT IT DOES
 
 - Miniature Props and Decor: the nine instruments on its prop shelf become playable instruments through Musical Instruments (Continued). A colonist walks up, sits down and plays. The metronome is left alone.
-- Miniature Props and Decor: the handheld game console and the ham radio become recreation sources — dexterity play and solitary relaxation. Both already sat in a file called Buildings_Recreation with no recreation type on them.
+- Miniature Props and Decor: the handheld game console and the ham radio become recreation sources: dexterity play and solitary relaxation. Both already sat in a file called Buildings_Recreation with no recreation type on them.
 - Alpha Props - Parks and Gardens: the seven ornamental fountains become natural meditation foci, scaled by size, and stop counting as artificial construction near other foci.
 - Alpha Props - Parks and Gardens: the anima and gauranlen hedges already carry a meditation focus strength that nothing in the game ever reads. They now feed that strength into nearby anima trees, animus stones and nature shrines, and likewise stop counting against them.
 - Alpha Props - Parks and Gardens: the five troughs become animal feeders. The game ships no feeder of any kind, so hay goes on the barn floor and rots there. Feed stored in a trough does not deteriorate, which is what lets the trough stand out in the pasture rather than under a roof. Animals eat straight from it.
