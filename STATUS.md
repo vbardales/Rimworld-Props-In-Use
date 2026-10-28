@@ -8,9 +8,9 @@ repo:         Rimworld-Props-In-Use
 remote:       https://github.com/vbardales/Rimworld-Props-In-Use.git
 visibility:   public
 detached:     no
-workflow_stage: setupRepo
-licence:      forbidden
-licence_at:   existing props alive; Chinese source forbidden (2877536640 About lines 17-24); optional patch on the RF-owned def, nothing of the source imported
+workflow_stage: makeSources
+licence:      original
+licence_at:   "2026-10-29: patches only, every source mod is an optional dependency (props mods, RepossessedFurniture); no source file, texture or def shipped; the Chinese source restriction (2877536640) binds RF, not this mod; owner confirmed, visibility public"
 upstream_mod_remotes: N/A
 settings_audit: unchecked
 published:    no
@@ -19,14 +19,12 @@ showcase:     complete
 tested_on:
 workshop:
 remaining:
-  - open: 1.b licence/licence_at and visibility public to re-confirm (owner chose public 2026-10-28); history of the initial commit holds Docs/CHINESE_MANIFEST.json
   - note: 1.a duplicate check done 2026-10-29 (Search-Workshop, About.xml refs to sarg.alphapropsparks|Leo.PropsDecor, 9416 folders): no duplicate; only ours (Props as Style, Props as Deco), Better Architect Menu, Decor into Props (ferny, unrelated)
-  - open: 1.k record the move to makeSources once 1.a and 1.h are done
   - open: check Mod/About/PublishedFileId.txt (3811402847) against workshop field; LICENSE aligned 2026-10-29
   - note: GitHub repo vbardales/Rimworld-Props-In-Use public, pushed e1b7f58 on 2026-10-28
   - unverified: never seen running
 session:      01a09721-3c91-72a3-8e78-5d2c507deb63
-updated:      2026-10-29, 1.a duplicate check done
+updated:      2026-10-29, moved to makeSources (1.k)
 protocols_read_sha: cc1f93006ee3756009054a0389731cff310d8784
 ---
 
@@ -64,8 +62,8 @@ The original artwork already contains books; `MapMeshOnly` keeps it static and t
 Contents tab shows the actual inventory. Costs, quality, art, research and graphics
 remain the owner's. Books retain vanilla reading, room and research behavior.
 
-This integration is a public optional dependency (owner decision, 2026-10-28): the patch ships no source file and does nothing without RepossessedFurniture. The CHINESE_MANIFEST.json index of source defs stays out of the repo (.gitignore). Source edition 2877536640 is classified
-`forbidden` because About/About.xml lines 17–24 objects to unauthorized republication.
+This integration is a public optional dependency (owner decision, 2026-10-28): the patch ships no source file and does nothing without RepossessedFurniture. The CHINESE_MANIFEST.json index of source defs stays out of the repo (.gitignore). Source edition 2877536640 (owned via RF, not shipped here) carries a restriction:
+About/About.xml lines 17–24 object to unauthorized republication; this mod republishes nothing.
 An invitation to submit patches does not grant redistribution rights. Credits:
 Diamond.J, DaJian (has exited), Frolg, TangWan, XF and other credited contributors;
 the source notice also names GLONASS, Naiya and JARON. No publication or push occurred.
@@ -78,6 +76,6 @@ changing `thingClass` on saved instances is not claimed migration-safe.
 
 See `Docs/CHINESE_AUDIT.md`, `Docs/SOURCES.json` and `TESTING.md` for selection, provenance, coverage and unplayed scenarios.
 
-Chinese validation: 68 assertions, 11 XML, 739 concrete source defs indexed; post-patch field/reference/class checks pass, 9 types resolved, 26 config rules pass. Tested against the final RF-owned bookcase. No C# compilation applies; no game scenario executed. The forbidden classification records the Chinese source restriction, not a relicensing of original MIT patch code. Remote visibility was not rechecked or changed.
+Chinese validation: 68 assertions, 11 XML, 739 concrete source defs indexed; post-patch field/reference/class checks pass, 9 types resolved, 26 config rules pass. Tested against the final RF-owned bookcase. No C# compilation applies; no game scenario executed. Licence of this mod: original (owner, 2026-10-29). Remote visibility was not rechecked or changed.
 
 Validation complémentaire : Check-DefInjected vérifie la description française (1 clé, 0 erreur). Les empreintes des 93 fichiers XML amont inspectés sont inchangées en fin d'audit.
