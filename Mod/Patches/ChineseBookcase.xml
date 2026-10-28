@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <!-- Optional integration. RepossessedFurniture owns the original def and artwork.
+       MapMeshOnly keeps the prefilled artwork: no vanilla book-spine overlay.
+       The vanilla Building_Bookcase owns hauling, reading and serialization.
+       Add/remove on a save only after emptying and deconstructing these bookcases. -->
+  <Operation Class="PatchOperationConditional">
+    <xpath>Defs/ThingDef[defName="SZ_ZhuangShiShuJia"][building][size="(2,1)"][/Defs/ThingDef[defName="Bookcase"]]</xpath>
+    <match Class="PatchOperationSequence">
+      <operations>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="SZ_ZhuangShiShuJia"]/thingClass</xpath>
+          <match Class="PatchOperationReplace"><xpath>Defs/ThingDef[defName="SZ_ZhuangShiShuJia"]/thingClass</xpath><value><thingClass>Building_Bookcase</thingClass></value></match>
+          <nomatch Class="PatchOperationAdd"><xpath>Defs/ThingDef[defName="SZ_ZhuangShiShuJia"]</xpath><value><thingClass>Building_Bookcase</thingClass></value></nomatch>
+        </li>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="SZ_ZhuangShiShuJia"]/drawerType</xpath>
+          <match Class="PatchOperationReplace"><xpath>Defs/ThingDef[defName="SZ_ZhuangShiShuJia"]/drawerType</xpath><value><drawerType>MapMeshOnly</drawerType></value></match>
+          <nomatch Class="PatchOperationAdd"><xpath>Defs/ThingDef[defName="SZ_ZhuangShiShuJia"]</xpath><value><drawerType>MapMeshOnly</drawerType></value></nomatch>
+        </li>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="SZ_ZhuangShiShuJia"]/preventDroppingThingsOn</xpath>
+          <match Class="PatchOperationReplace"><xpath>Defs/ThingDef[defName="SZ_ZhuangShiShuJia"]/preventDroppingThingsOn</xpath><value><preventDroppingThingsOn>true</preventDroppingThingsOn></value></match>
+          <nomatch Class="PatchOperationAdd"><xpath>Defs/ThingDef[defName="SZ_ZhuangShiShuJia"]</xpath><value><preventDroppingThingsOn>true</preventDroppingThingsOn></value></nomatch>
+        </li>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="SZ_ZhuangShiShuJia"]/surfaceType</xpath>
+          <match Class="PatchOperationReplace"><xpath>Defs/ThingDef[defName="SZ_ZhuangShiShuJia"]/surfaceType</xpath><value><surfaceType>None</surfaceType></value></match>
+          <nomatch Class="PatchOperationAdd"><xpath>Defs/ThingDef[defName="SZ_ZhuangShiShuJia"]</xpath><value><surfaceType>None</surfaceType></value></nomatch>
+        </li>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="SZ_ZhuangShiShuJia"]/inspectorTabs</xpath>
+          <match Class="PatchOperationReplace"><xpath>Defs/ThingDef[defName="SZ_ZhuangShiShuJia"]/inspectorTabs</xpath><value><inspectorTabs Inherit="False"><li>ITab_Art</li><li>ITab_Storage</li><li>ITab_ContentsBooks</li></inspectorTabs></value></match>
+          <nomatch Class="PatchOperationAdd"><xpath>Defs/ThingDef[defName="SZ_ZhuangShiShuJia"]</xpath><value><inspectorTabs Inherit="False"><li>ITab_Art</li><li>ITab_Storage</li><li>ITab_ContentsBooks</li></inspectorTabs></value></nomatch>
+        </li>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="SZ_ZhuangShiShuJia"]/description</xpath>
+          <match Class="PatchOperationReplace"><xpath>Defs/ThingDef[defName="SZ_ZhuangShiShuJia"]/description</xpath><value><description>A Chinese bookcase storing up to ten books. Stored books provide the normal bookcase reading and research benefits. Its ornamental books are part of the original artwork and do not represent the stored contents; inspect the Contents tab for the actual books. Empty and deconstruct this bookcase before removing Props in Use.</description></value></match>
+          <nomatch Class="PatchOperationAdd"><xpath>Defs/ThingDef[defName="SZ_ZhuangShiShuJia"]</xpath><value><description>A Chinese bookcase storing up to ten books. Stored books provide the normal bookcase reading and research benefits. Its ornamental books are part of the original artwork and do not represent the stored contents; inspect the Contents tab for the actual books. Empty and deconstruct this bookcase before removing Props in Use.</description></value></nomatch>
+        </li>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="SZ_ZhuangShiShuJia"]/building/storageGroupTag</xpath>
+          <match Class="PatchOperationReplace"><xpath>Defs/ThingDef[defName="SZ_ZhuangShiShuJia"]/building/storageGroupTag</xpath><value><storageGroupTag>Bookcase</storageGroupTag></value></match>
+          <nomatch Class="PatchOperationAdd"><xpath>Defs/ThingDef[defName="SZ_ZhuangShiShuJia"]/building</xpath><value><storageGroupTag>Bookcase</storageGroupTag></value></nomatch>
+        </li>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="SZ_ZhuangShiShuJia"]/building/maxItemsInCell</xpath>
+          <match Class="PatchOperationReplace"><xpath>Defs/ThingDef[defName="SZ_ZhuangShiShuJia"]/building/maxItemsInCell</xpath><value><maxItemsInCell>5</maxItemsInCell></value></match>
+          <nomatch Class="PatchOperationAdd"><xpath>Defs/ThingDef[defName="SZ_ZhuangShiShuJia"]/building</xpath><value><maxItemsInCell>5</maxItemsInCell></value></nomatch>
+        </li>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="SZ_ZhuangShiShuJia"]/building/blueprintClass</xpath>
+          <match Class="PatchOperationReplace"><xpath>Defs/ThingDef[defName="SZ_ZhuangShiShuJia"]/building/blueprintClass</xpath><value><blueprintClass>Blueprint_StorageWithRoomHighlight</blueprintClass></value></match>
+          <nomatch Class="PatchOperationAdd"><xpath>Defs/ThingDef[defName="SZ_ZhuangShiShuJia"]/building</xpath><value><blueprintClass>Blueprint_StorageWithRoomHighlight</blueprintClass></value></nomatch>
+        </li>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="SZ_ZhuangShiShuJia"]/building/preventDeteriorationOnTop</xpath>
+          <match Class="PatchOperationReplace"><xpath>Defs/ThingDef[defName="SZ_ZhuangShiShuJia"]/building/preventDeteriorationOnTop</xpath><value><preventDeteriorationOnTop>true</preventDeteriorationOnTop></value></match>
+          <nomatch Class="PatchOperationAdd"><xpath>Defs/ThingDef[defName="SZ_ZhuangShiShuJia"]/building</xpath><value><preventDeteriorationOnTop>true</preventDeteriorationOnTop></value></nomatch>
+        </li>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="SZ_ZhuangShiShuJia"]/building/ignoreStoredThingsBeauty</xpath>
+          <match Class="PatchOperationReplace"><xpath>Defs/ThingDef[defName="SZ_ZhuangShiShuJia"]/building/ignoreStoredThingsBeauty</xpath><value><ignoreStoredThingsBeauty>false</ignoreStoredThingsBeauty></value></match>
+          <nomatch Class="PatchOperationAdd"><xpath>Defs/ThingDef[defName="SZ_ZhuangShiShuJia"]/building</xpath><value><ignoreStoredThingsBeauty>false</ignoreStoredThingsBeauty></value></nomatch>
+        </li>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="SZ_ZhuangShiShuJia"]/building/fixedStorageSettings</xpath>
+          <match Class="PatchOperationReplace"><xpath>Defs/ThingDef[defName="SZ_ZhuangShiShuJia"]/building/fixedStorageSettings</xpath><value><fixedStorageSettings Inherit="False"><filter><categories><li>Books</li></categories></filter></fixedStorageSettings></value></match>
+          <nomatch Class="PatchOperationAdd"><xpath>Defs/ThingDef[defName="SZ_ZhuangShiShuJia"]/building</xpath><value><fixedStorageSettings Inherit="False"><filter><categories><li>Books</li></categories></filter></fixedStorageSettings></value></nomatch>
+        </li>
+        <li Class="PatchOperationConditional">
+          <xpath>Defs/ThingDef[defName="SZ_ZhuangShiShuJia"]/building/defaultStorageSettings</xpath>
+          <match Class="PatchOperationReplace"><xpath>Defs/ThingDef[defName="SZ_ZhuangShiShuJia"]/building/defaultStorageSettings</xpath><value><defaultStorageSettings Inherit="False"><priority>Important</priority><filter><categories><li>Books</li></categories></filter></defaultStorageSettings></value></match>
+          <nomatch Class="PatchOperationAdd"><xpath>Defs/ThingDef[defName="SZ_ZhuangShiShuJia"]/building</xpath><value><defaultStorageSettings Inherit="False"><priority>Important</priority><filter><categories><li>Books</li></categories></filter></defaultStorageSettings></value></nomatch>
+        </li>
+      </operations>
+    </match>
+  </Operation>
+</Patch>

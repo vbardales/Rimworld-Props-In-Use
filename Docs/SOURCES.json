@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "sources": [
+    {
+      "importedFiles": 0,
+      "kind": "existing-optional-patches",
+      "id": "Leo.PropsDecor"
+    },
+    {
+      "importedFiles": 0,
+      "kind": "existing-optional-patches",
+      "id": "sarg.alphapropsparks"
+    },
+    {
+      "importedFiles": 0,
+      "kind": "existing-optional-framework",
+      "id": "Mlie.MusicalInstruments"
+    },
+    {
+      "packageId": "Dajian.ChiTeaditional.Expanded",
+      "license": "forbidden",
+      "privateOnly": true,
+      "defOwner": "nelim.repossessedfurniture",
+      "manifest": "CHINESE_MANIFEST.json",
+      "authors": "Diamond.J, DaJian (has exited), Frolg, TangWan, XF, etc.; About also credits GLONASS, Naiya and JARON contributors",
+      "upstreamImmutable": true,
+      "id": "2877536640",
+      "functionPatch": "Mod/Patches/ChineseBookcase.xml",
+      "importedFiles": 0
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+    "panel": {
+        "title": "Props in Use (prohibited)",
+        "titleSize": 44,
+        "titleParts": [
+            {
+                "text": "Props in Use"
+            }
+        ],
+        "tag": "(prohibited)",
+        "tagInline": false,
+        "copyLines": [
+            "Music, meditation and living props.",
+            "A private local integration."
+        ]
+    },
+    "backgroundFile": "Preview-source.png",
+    "echo": {
+        "file": "echo-concept.png",
+        "color": "var(--accent)",
+        "width": 185,
+        "height": 170
+    },
+    "icon": {
+        "file": "ModIcon-source.png"
+    },
+    "palette": {}
+}
+    

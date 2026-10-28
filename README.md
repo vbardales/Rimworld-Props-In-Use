@@ -84,3 +84,28 @@ as root operations.
 ## License and attribution
 
 MIT. The mod contains no file belonging to anyone else; see [ATTRIBUTION.md](ATTRIBUTION.md).
+
+
+## Chinese Traditional Cultural Things Expanded — optional function patch (2026-09-12)
+
+One optional conversion: `SZ_ZhuangShiShuJia`, a 2x1 decorative bookcase, stores ten
+real books using Core 1.6 `Building_Bookcase`. RepossessedFurniture owns its original
+ThingDef and artwork. PropsInUse declares neither and copies no source assembly.
+The original artwork already contains books; `MapMeshOnly` keeps it static and the
+Contents tab shows the actual inventory. Costs, quality, art, research and graphics
+remain the owner's. Books retain vanilla reading, room and research behavior.
+
+This integration is strictly private. Source edition 2877536640 is classified
+`forbidden` because About/About.xml lines 17–24 objects to unauthorized republication.
+An invitation to submit patches does not grant redistribution rights. Credits:
+Diamond.J, DaJian (has exited), Frolg, TangWan, XF and other credited contributors;
+the source notice also names GLONASS, Naiya and JARON. No publication or push occurred.
+
+Optional load order: Core, RepossessedFurniture, PropsInUse. No new mandatory
+dependency: without the exact 2x1 bookcase and Core Bookcase, the patch is inert.
+Do not combine duplicate source owners. Only the RF-owned 1.6 integration is supported.
+Empty and deconstruct existing copies before enabling or disabling the conversion:
+changing `thingClass` on saved instances is not claimed migration-safe.
+
+See `Docs/CHINESE_AUDIT.md`, `Docs/SOURCES.json` and `TESTING.md` for selection, provenance,
+coverage and unplayed scenarios.

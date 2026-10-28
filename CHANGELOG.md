@@ -64,3 +64,8 @@ Les trois auges fleuries sont converties comme les deux autres. Les laisser déc
 laissé trois props purs debout, ce que ce mod existe précisément pour refuser.
 
 Les cinq reçoivent aussi un libellé et une description français, que le mod d'origine n'a pas.
+
+
+## 2026-09-12 — optional Chinese bookcase integration
+
+Added one guarded function patch for RF-owned SZ_ZhuangShiShuJia, ten real books, static original artwork. No source defs, assets or assemblies imported. Added source manifest, ownership audit and test protocol. Saved instances must be emptied and deconstructed before changing the runtime class. In-game scenarios remain unexecuted.

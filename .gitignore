@@ -1,5 +1,6 @@
 # Ce mod ne contient aucun code : rien a compiler, rien d'intermediaire.
-.build/
+Build/
+Docs/CHINESE_MANIFEST.json
 
 # Environnements de developpement
 .vs/
@@ -10,3 +11,11 @@
 Thumbs.db
 desktop.ini
 .DS_Store
+evidence/
+Tests/Pickle/Evidence/
+Art/.render/
+*.dds
+**/Source/obj/
+**/Source/bin/
+**/Source/**/obj/
+**/Source/**/bin/

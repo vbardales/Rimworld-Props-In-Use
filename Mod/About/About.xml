@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
   <name>Props in Use</name>
-  <author>nelim</author>
+  <author>Nelim</author>
   <packageId>nelim.propsinuse</packageId>
   <supportedVersions>
     <li>1.6</li>
@@ -24,9 +24,13 @@ A trough had to change its thingClass to hold storage, and the one it had was th
 
 Every change is a guarded patch. If a source mod is absent, its patch does nothing and reports nothing. Nothing here contains another author's files.
 
-No save data of its own. Adding it mid-save is safe; removing it leaves props that are once again only props - empty the troughs first, or whatever they hold will be left loose on the ground.</description>
+RepossessedFurniture: the Chinese decorative bookcase becomes a functional ten-book bookcase. The source def and its artwork remain owned by RepossessedFurniture. This optional patch does nothing without that bookcase.
+
+Save changes: empty and deconstruct Chinese bookcases before adding or removing this patch, because their runtime class and serialized contents change. Empty the animal troughs before removing their patches. These transitions still require in-game testing.</description>
   <modDependencies />
   <loadAfter>
+    <li>nelim.repossessedfurniture</li>
+    <li>Dajian.ChiTeaditional.Expanded</li>
     <li>Ludeon.RimWorld</li>
     <li>Ludeon.RimWorld.Royalty</li>
     <li>Ludeon.RimWorld.Ideology</li>
