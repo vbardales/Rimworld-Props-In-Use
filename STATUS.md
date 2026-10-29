@@ -8,11 +8,11 @@ repo:         Rimworld-Props-In-Use
 remote:       https://github.com/vbardales/Rimworld-Props-In-Use.git
 visibility:   public
 detached:     no
-workflow_stage: settings[1.0.0]
+workflow_stage: localize[1.0.0]
 licence:      original
 licence_at:   "2026-10-29: patches only, every source mod is an optional dependency (props mods, RepossessedFurniture); no source file, texture or def shipped; the Chinese source restriction (2877536640) binds RF, not this mod; owner confirmed, visibility public"
 upstream_mod_remotes: N/A
-settings_audit: unchecked
+settings_audit: partial
 published:    yes
 dependencies: declared (none hard; six optional sources in loadAfter, 2026-10-29, rev a2f3ae5)
 showcase:     complete
@@ -26,10 +26,11 @@ remaining:
   - note: 4.a/4.g dependencies 2026-10-29 (rev a2f3ae5), all optional, none in modDependencies, every patch is a PatchOperationConditional on the target def, inert and silent without its source: Leo.PropsDecor (3579351912, Miniature Props and Decor: MiniatureInstruments, MiniatureRecreation); sarg.alphapropsparks (3146268928, Alpha Props - Parks and Gardens: AlphaFountains, AlphaHedges, AlphaTroughs); Mlie.MusicalInstruments (2274558815, framework for the instruments); VanillaExpanded.VFEPropsandDecor (2102143149, loadAfter only: the troughs carry its Building_SubstractsSilver class); Dajian.ChiTeaditional.Expanded (2877536640, ChineseBookcase source, owned via RF); nelim.repossessedfurniture (3811382245, owns the bookcase def)
   - note: 4.c DLC 2026-10-29: Royalty and Ideology only in loadAfter; hedges patch targets the Royalty natural foci, guarded; no LoadFolders (4.e n/a)
   - note: 4.d 2026-10-29: loadAfter only, no hard dependency, no cycle possible (no source lists this mod; RF loadAfter Dajian only); sort-load-order.py not run, it needs a Pickle staging
+  - unverified: settings_audit in-game check at playTests: Mod options lists no Props in Use page and no MainButtons shortcut exists
   - unverified: never seen running
 session:      01a09721-3c91-72a3-8e78-5d2c507deb63
-updated:      2026-10-29, settings[1.0.0], declareDependencies done (4.d checked by hand, owner accepted)
-protocols_read_sha: cc1f93006ee3756009054a0389731cff310d8784
+updated:      2026-10-29, localize[1.0.0], settings audit partial (no settings, in-game check unverified)
+protocols_read_sha: 0de1645871c6a385f04273c57529a088baf6d391
 ---
 
 # Props in Use — status
@@ -83,3 +84,14 @@ See `Docs/CHINESE_AUDIT.md`, `Docs/SOURCES.json` and `TESTING.md` for selection,
 Chinese validation: 68 assertions, 11 XML, 739 concrete source defs indexed; post-patch field/reference/class checks pass, 9 types resolved, 26 config rules pass. Tested against the final RF-owned bookcase. No C# compilation applies; no game scenario executed. Licence of this mod: original (owner, 2026-10-29). Remote visibility was not rechecked or changed.
 
 Validation complémentaire : Check-DefInjected vérifie la description française (1 clé, 0 erreur). Les empreintes des 93 fichiers XML amont inspectés sont inchangées en fin d'audit.
+
+
+## Settings audit (2026-10-29, rev a2f3ae5)
+
+Result: no settings, justified (`partial` until the in-game check at `playTests`).
+
+Inventory. The mod is patches only (six XML files under `Mod/Patches/`, two language folders, About): no assembly, no `Source/`, no ModSettings class, no MainButtonDef, no stored value. Behaviours that could be configurable, and why none is exposed: instruments, recreation, fountain and hedge meditation strengths, trough feeders, ten-book bookcase are fixed values chosen to match the vanilla scale (see CHANGELOG); each source patch is already switched off by not loading its source mod, so an option would duplicate that; the only changed price (troughs, 25 wood and 400 work) is explained in the description and replaces a class the game cannot keep. An option would need C# and an assembly, against the decision of a mod that ships no code. No player need was raised, none invented.
+
+Access contract. Without an assembly there is no Mod options page, and no MainButtons shortcut can exist: confirmed by `git ls-files Mod` (no dll, no def outside patches). In-game confirmation (Mod options does not list the mod, no button) is `unverified` until `playTests`.
+
+Tests. `Check-Status.ps1`: 0 error. No game scenario executed.
