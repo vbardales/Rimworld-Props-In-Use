@@ -1,14 +1,14 @@
 ---
-localization: unchecked
-translation_en: unchecked
-translation_fr: unchecked
+localization: partial
+translation_en: complete
+translation_fr: partial
 mod:          Props in Use
 packageId:    nelim.propsinuse
 repo:         Rimworld-Props-In-Use
 remote:       https://github.com/vbardales/Rimworld-Props-In-Use.git
 visibility:   public
 detached:     no
-workflow_stage: localize[1.0.0]
+workflow_stage: writeTests[1.0.0]
 licence:      original
 licence_at:   "2026-10-29: patches only, every source mod is an optional dependency (props mods, RepossessedFurniture); no source file, texture or def shipped; the Chinese source restriction (2877536640) binds RF, not this mod; owner confirmed, visibility public"
 upstream_mod_remotes: N/A
@@ -27,10 +27,12 @@ remaining:
   - note: 4.c DLC 2026-10-29: Royalty and Ideology only in loadAfter; hedges patch targets the Royalty natural foci, guarded; no LoadFolders (4.e n/a)
   - note: 4.d 2026-10-29: loadAfter only, no hard dependency, no cycle possible (no source lists this mod; RF loadAfter Dajian only); sort-load-order.py not run, it needs a Pickle staging
   - unverified: settings_audit in-game check at playTests: Mod options lists no Props in Use page and no MainButtons shortcut exists
+  - unverified: 6.g French review by Virginie (FRENCH_REVIEW.md, rev 5596ca9), required before leaving writeTests
+  - unverified: in-game text check (raw keys, fallback, clipping) at playTests
   - unverified: never seen running
 session:      01a09721-3c91-72a3-8e78-5d2c507deb63
-updated:      2026-10-29, localize[1.0.0], settings audit partial (no settings, in-game check unverified)
-protocols_read_sha: 0de1645871c6a385f04273c57529a088baf6d391
+updated:      2026-10-29, writeTests[1.0.0], localize done (French review of Virginie pending)
+protocols_read_sha: 05758453139b9bb96a160035e5759e58183113b6
 ---
 
 # Props in Use — status
@@ -95,3 +97,10 @@ Inventory. The mod is patches only (six XML files under `Mod/Patches/`, two lang
 Access contract. Without an assembly there is no Mod options page, and no MainButtons shortcut can exist: confirmed by `git ls-files Mod` (no dll, no def outside patches). In-game confirmation (Mod options does not list the mod, no button) is `unverified` until `playTests`.
 
 Tests. `Check-Status.ps1`: 0 error. No game scenario executed.
+
+
+## Translation audit (2026-10-29, rev 5596ca9)
+
+Where the French lives: `Mod/Languages/French/Keyed/PropsInUse.xml` (4 keys, hedge focus lines), `DefInjected/ThingDef/AlphaTroughs.xml` (5 troughs, label and description: the source mod has no French), `DefInjected/ThingDef/ChineseBookcase.xml` (1 description, MayRequire RF), `DefInjected/JobDef/Recreation.xml` (2 reportString). English: `Languages/English/Keyed/PropsInUse.xml` and the English text of the patches; no C# text, so no `.Translate()` call.
+
+Checks 2026-10-29: `Check-Translations.ps1 -ModRoot Mod` PASS (6 source texts + 2 nested, coverage, stale, duplicates, tokens); `Check-DefInjected.ps1` 0 error; 5 warnings (trough labels outside the inventory, they come from the source mod defs and resolve). A `Duplicate French DefInjected key` finding seen with `-ModRoot .` is false: the script walks the git-ignored `Build/ChineseEffective/Languages`; `-ModRoot Mod` is clean. Fixed: reportString of the two recreation jobs had no French; the bookcase text addressed the player (consultez, videz), now infinitive. No pawn-agreeing text, so no gendered forms. French review of Virginie: not done (`FRENCH_REVIEW.md`, review line empty).
