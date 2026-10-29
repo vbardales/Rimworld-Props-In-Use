@@ -8,7 +8,7 @@ repo:         Rimworld-Props-In-Use
 remote:       https://github.com/vbardales/Rimworld-Props-In-Use.git
 visibility:   public
 detached:     no
-workflow_stage: code[1.0.0]
+workflow_stage: declareDependencies[1.0.0]
 licence:      original
 licence_at:   "2026-10-29: patches only, every source mod is an optional dependency (props mods, RepossessedFurniture); no source file, texture or def shipped; the Chinese source restriction (2877536640) binds RF, not this mod; owner confirmed, visibility public"
 upstream_mod_remotes: N/A
@@ -25,7 +25,7 @@ remaining:
   - note: 2.a Art/ModIcon-source.png and 2.e Art/Preview-source.png delivered by owner (ModIcon 1254x1254; Preview replaced 2026-10-29 by a flat-sprite scene, Measure-Palette: 2 families, Vmean 0.392 >= 0.30, no face); none created by session
   - unverified: never seen running
 session:      01a09721-3c91-72a3-8e78-5d2c507deb63
-updated:      2026-10-29, code[1.0.0], makeSources done
+updated:      2026-10-29, declareDependencies[1.0.0], code done (no code, no build; CHANGELOG [Unreleased] in English)
 protocols_read_sha: cc1f93006ee3756009054a0389731cff310d8784
 ---
 
