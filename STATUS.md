@@ -8,7 +8,7 @@ repo:         Rimworld-Props-In-Use
 remote:       https://github.com/vbardales/Rimworld-Props-In-Use.git
 visibility:   public
 detached:     no
-workflow_stage: writeTests[1.0.0]
+workflow_stage: playTests[1.0.0]
 licence:      original
 licence_at:   "2026-10-29: patches only, every source mod is an optional dependency (props mods, RepossessedFurniture); no source file, texture or def shipped; the Chinese source restriction (2877536640) binds RF, not this mod; owner confirmed, visibility public"
 upstream_mod_remotes: N/A
@@ -28,10 +28,13 @@ remaining:
   - note: 4.d 2026-10-29: loadAfter only, no hard dependency, no cycle possible (no source lists this mod; RF loadAfter Dajian only); sort-load-order.py not run, it needs a Pickle staging
   - unverified: settings_audit in-game check at playTests: Mod options lists no Props in Use page and no MainButtons shortcut exists
   - unverified: in-game text check (raw keys, fallback, clipping) at playTests
+  - unverified: 7.c Check-XmlClasses on the bookcase snapshot cannot conclude: the type list ../rw16_types.txt no longer exists (ITab_Storage reported unknown, it is vanilla)
+  - unverified: Pickle suite Tests/Pickle (10 features, 3 passes) written, never played; ticket to file at playTests
+  - feature: needs NPT step (to ask via TM): count of things held by a storage building (ten-book limit, refused eleventh book), item hit points or a stat compared to a remembered value (hay not deteriorating in rain); AI behaviours (animals choosing the trough, two colonists on the console) and save then removal of the mod stay manual or unwritten
   - unverified: never seen running
 session:      01a09721-3c91-72a3-8e78-5d2c507deb63
-updated:      2026-10-29, writeTests[1.0.0], localize done (French review of Virginie pending)
-protocols_read_sha: 05758453139b9bb96a160035e5759e58183113b6
+updated:      2026-10-29, playTests[1.0.0], writeTests done (nothing played in game yet)
+protocols_read_sha: af740f581512fb2b0d8180812d83916db48bf0c1
 ---
 
 # Props in Use — status
@@ -105,3 +108,12 @@ Where the French lives: `Mod/Languages/French/Keyed/PropsInUse.xml` (4 keys, hed
 Checks 2026-10-29: `Check-Translations.ps1 -ModRoot Mod` PASS (6 source texts + 2 nested, coverage, stale, duplicates, tokens); `Check-DefInjected.ps1` 0 error; 5 warnings (trough labels outside the inventory, they come from the source mod defs and resolve). A `Duplicate French DefInjected key` finding seen with `-ModRoot .` is false: the script walks the git-ignored `Build/ChineseEffective/Languages`; `-ModRoot Mod` is clean. Fixed: reportString of the two recreation jobs had no French; the bookcase text addressed the player (consultez, videz), now infinitive. No pawn-agreeing text, so no gendered forms. French review of Virginie: done 2026-10-29, rev 3694f50, no correction requested (review line filled in `FRENCH_REVIEW.md`).
 
 ChatGPT review (2026-10-29, page 1 of 1, read-only): two suggestions, "haie d anima" and "haie de gauranlen". Not applied as such: the base game French says "arbre anima" and "herbe anima" (no d), so "haie anima" stays; "Gauranlen" capitalised like "arbre Gauranlen" (applied). Virginie review done 2026-10-29 (rev 3694f50), no correction; "haie Gauranlen" kept.
+
+
+## Tests written (2026-10-29, Mod/ last changed in 981bc72)
+
+- 7.a TESTING.md: I01 to I09 (Chinese bookcase) and P01 to P11 (props), all not executed.
+- 7.b/7.c offline, rerun 2026-10-29: Tests/Test-Patches.ps1 175 assertions, Tests/Test-ChineseBookcase.ps1 69 assertions, Check-XmlFields and Check-DefRefs on the bookcase snapshot clean, Check-ModBasics PASS. Both scripts declared in scripts/LOCAL_SCRIPTS.md.
+- 7.d Tests/Pickle: 10 features (loading, minimal pass, patches applied, instruments, recreation, fountains, hedges, troughs, bookcase, translations), 3 passes (minimal, sources EN, sources FR), no local step, Check-Steps 233 steps resolved, never played. Needs NPT: see remaining.
+- 7.e not applicable: no C# so no unit test project (Run-UnitTests has nothing to run), no settings page to test (settings_audit partial).
+- 7.f tested revision: Mod/ unchanged since 981bc72; any later commit to Mod/ reopens 7.b and 7.c.
