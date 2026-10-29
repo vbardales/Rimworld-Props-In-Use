@@ -4,7 +4,7 @@
   <PIU_FocusPerAnimaHedge>{2} par haie anima à proximité ({0} / {1})</PIU_FocusPerAnimaHedge>
   <PIU_FocusPerAnimaHedgeAbstract>{1} par haie anima à proximité (max. {0})</PIU_FocusPerAnimaHedgeAbstract>
 
-  <PIU_FocusPerGauHedge>{2} par haie gauranlen à proximité ({0} / {1})</PIU_FocusPerGauHedge>
-  <PIU_FocusPerGauHedgeAbstract>{1} par haie gauranlen à proximité (max. {0})</PIU_FocusPerGauHedgeAbstract>
+  <PIU_FocusPerGauHedge>{2} par haie Gauranlen à proximité ({0} / {1})</PIU_FocusPerGauHedge>
+  <PIU_FocusPerGauHedgeAbstract>{1} par haie Gauranlen à proximité (max. {0})</PIU_FocusPerGauHedgeAbstract>
 
 </LanguageData>
