@@ -31,9 +31,10 @@ remaining:
   - unverified: 7.c Check-XmlClasses on the bookcase snapshot cannot conclude: the type list ../rw16_types.txt no longer exists (ITab_Storage reported unknown, it is vanilla)
   - unverified: Pickle suite Tests/Pickle (10 features, 3 passes) written, never played; ticket to file at playTests
   - note: NPT delivered the two missing steps (StageDecor, a060847, compiled not played); scenarios added to 08 and 09, Check-Steps clean. Animal and two-colonist AI behaviours, reading a book, and save then removal of the mod stay unwritten
+  - note: 8.c initial tickets filed 2026-10-29 for f7d85c4 (Mod/ and Tests/Pickle must stay still until RUN_DONE): 20261029-234904-161-82cb sources EN (Tests/Pickle/Inbox/initial-sources-en), 20261029-234905-549-5a2f minimal (initial-minimal), 20261029-234906-917-e82f sources FR (initial-sources-fr). Next: read summary.json then junit.xml of each, triage, then 8.m code review and 8.n
   - unverified: never seen running
 session:      01a09721-3c91-72a3-8e78-5d2c507deb63
-updated:      2026-10-29, playTests[1.0.0], writeTests done (nothing played in game yet)
+updated:      2026-10-29, playTests[1.0.0], 3 initial Pickle tickets queued for f7d85c4
 protocols_read_sha: af740f581512fb2b0d8180812d83916db48bf0c1
 ---
 
