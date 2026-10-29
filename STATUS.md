@@ -8,7 +8,7 @@ repo:         Rimworld-Props-In-Use
 remote:       https://github.com/vbardales/Rimworld-Props-In-Use.git
 visibility:   public
 detached:     no
-workflow_stage: declareDependencies[1.0.0]
+workflow_stage: settings[1.0.0]
 licence:      original
 licence_at:   "2026-10-29: patches only, every source mod is an optional dependency (props mods, RepossessedFurniture); no source file, texture or def shipped; the Chinese source restriction (2877536640) binds RF, not this mod; owner confirmed, visibility public"
 upstream_mod_remotes: N/A
@@ -28,7 +28,7 @@ remaining:
   - note: 4.d 2026-10-29: loadAfter only, no hard dependency, no cycle possible (no source lists this mod; RF loadAfter Dajian only); sort-load-order.py not run, it needs a Pickle staging
   - unverified: never seen running
 session:      01a09721-3c91-72a3-8e78-5d2c507deb63
-updated:      2026-10-29, declareDependencies[1.0.0], code done (no code, no build; CHANGELOG [Unreleased] in English)
+updated:      2026-10-29, settings[1.0.0], declareDependencies done (4.d checked by hand, owner accepted)
 protocols_read_sha: cc1f93006ee3756009054a0389731cff310d8784
 ---
 
