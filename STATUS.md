@@ -14,7 +14,7 @@ licence_at:   "2026-10-29: patches only, every source mod is an optional depende
 upstream_mod_remotes: N/A
 settings_audit: unchecked
 published:    yes
-dependencies: optional source mods; Chinese bookcase owner nelim.repossessedfurniture
+dependencies: declared (none hard; six optional sources in loadAfter, 2026-10-29, rev a2f3ae5)
 showcase:     complete
 tested_on:
 workshop:     3811402847
@@ -23,6 +23,9 @@ remaining:
   - note: Workshop item 3811402847 published as 0.1.0, hidden (owner, 2026-10-29)
   - note: GitHub repo vbardales/Rimworld-Props-In-Use public, pushed e1b7f58 on 2026-10-28
   - note: 2.a Art/ModIcon-source.png and 2.e Art/Preview-source.png delivered by owner (ModIcon 1254x1254; Preview replaced 2026-10-29 by a flat-sprite scene, Measure-Palette: 2 families, Vmean 0.392 >= 0.30, no face); none created by session
+  - note: 4.a/4.g dependencies 2026-10-29 (rev a2f3ae5), all optional, none in modDependencies, every patch is a PatchOperationConditional on the target def, inert and silent without its source: Leo.PropsDecor (3579351912, Miniature Props and Decor: MiniatureInstruments, MiniatureRecreation); sarg.alphapropsparks (3146268928, Alpha Props - Parks and Gardens: AlphaFountains, AlphaHedges, AlphaTroughs); Mlie.MusicalInstruments (2274558815, framework for the instruments); VanillaExpanded.VFEPropsandDecor (2102143149, loadAfter only: the troughs carry its Building_SubstractsSilver class); Dajian.ChiTeaditional.Expanded (2877536640, ChineseBookcase source, owned via RF); nelim.repossessedfurniture (3811382245, owns the bookcase def)
+  - note: 4.c DLC 2026-10-29: Royalty and Ideology only in loadAfter; hedges patch targets the Royalty natural foci, guarded; no LoadFolders (4.e n/a)
+  - note: 4.d 2026-10-29: loadAfter only, no hard dependency, no cycle possible (no source lists this mod; RF loadAfter Dajian only); sort-load-order.py not run, it needs a Pickle staging
   - unverified: never seen running
 session:      01a09721-3c91-72a3-8e78-5d2c507deb63
 updated:      2026-10-29, declareDependencies[1.0.0], code done (no code, no build; CHANGELOG [Unreleased] in English)
