@@ -20,8 +20,8 @@ its own: every line comes from Pickle or from a PickleTools tool the pass map st
 | `05-recreation` | sources, English | The same for the game console and the ham radio (the two jobs the mod adds) |
 | `06-fountains` | sources, English | Each fountain reads the focus strength its size earns; seven fountains around an anima tree do not lower it |
 | `07-hedges` | sources, English | The anima tree reads 0.28, then +0.04 for four hedges of one kind, still +0.04 for eight, +0.08 for four of each |
-| `08-troughs` | sources, English | A colonist builds each of the five troughs from wood; a hungry cow eats hay stored in one; stored hay survives a save and a reload |
-| `09-bookcase` | sources, English | The Chinese bookcase opens its Contents and Storage tabs and survives a save and a reload |
+| `08-troughs` | sources, English | A colonist builds each of the five troughs from wood; a hungry cow eats hay stored in one; stored hay survives a save and a reload and keeps its hit points over 2000 ticks |
+| `09-bookcase` | sources, English | The Chinese bookcase opens its Contents and Storage tabs, holds ten books and refuses an eleventh (and a log), survives a save and a reload |
 | `10-translations` | sources, each language | Trough labels, the two report strings and the hedge lines of the anima tree stat, in the language of the pass (`@english` or `@french`) |
 
 Scenarios are isolated: each loads `test-colony` again. Everything is built south of Jet on cells that the save leaves free
@@ -55,9 +55,9 @@ still until `RUN_DONE`.
 
 ## Not written, and why
 
-- The ten-book limit and the refused eleventh book of the Chinese bookcase, and a book read from it: no step counts what a
-  storage building holds (needs a PickleTools step).
-- Hay that does not deteriorate in the rain: no step reads the hit points of an item (needs a PickleTools step).
+- Added after NPT delivered the StageDecor steps (commit a060847, compiled not played): the ten-book limit and the refused eleventh
+  book (`09`), and hay hit points kept over 2000 ticks (`08`; a real rain is not forced, so this only compares before and after).
+  Reading a book from the bookcase stays unwritten.
 - Several animals choosing the trough by themselves, and two colonists on the console (joy participants): AI behaviour, not
   asserted; the forced jobs above cover the def side.
 - Save then removal of Props in Use (TESTING.md P10, second half): a `-ThenWithout` pair, to write once the first passes are green.

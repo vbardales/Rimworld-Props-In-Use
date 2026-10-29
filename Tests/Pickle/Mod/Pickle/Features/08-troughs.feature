@@ -1,12 +1,14 @@
 # What the XML cannot show: a colonist really builds each trough from the 25 wood the patch asks
 # for (the class that charged silver was replaced), an animal really eats the hay stored in one,
 # and the changed class survives a save and a reload. That hay does not rot in the rain is not
-# here: no step reads the hit points of an item (see the README of this suite).
+# here as a rain test: the scenario below only compares the hit points of hay on a trough before and
+# after a stretch of game time (StageDecor steps, compiled by NPT, not played yet).
 @functional
 @timeout:100
 @requires:sarg.alphapropsparks
 @requires:nelim.pickletools.colonistrace
 @requires:nelim.pickletools.coatsteps
+@requires:nelim.pickletools.stagedecor
 Feature: Props in Use turns the Alpha Props troughs into animal feeders
 
   Background:
@@ -47,3 +49,12 @@ Feature: Props in Use turns the Alpha Props troughs into animal feeders
     When I save and reload
     Then a "AP_EmptyTrough" is at (112, 216)
     And 5 "Hay" exist
+
+  Scenario: hay stored in a trough keeps its hit points
+    Given I spawn a "AP_EmptyTrough" at (112, 216)
+    And Nelim's Pickle Tools: 1 of the item "Hay" are spawned at (112, 216)
+    And Nelim's Pickle Tools: the hit points of the thing "Hay" at (112, 216) are remembered
+    When I wait 1000 ticks
+    And I wait 1000 ticks
+    Then Nelim's Pickle Tools: the thing "Hay" at (112, 216) has kept its remembered hit points
+    And no errors were logged
