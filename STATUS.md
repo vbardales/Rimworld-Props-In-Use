@@ -30,7 +30,7 @@ remaining:
   - unverified: in-game text check (raw keys, fallback, clipping) at playTests
   - unverified: 7.c Check-XmlClasses on the bookcase snapshot cannot conclude: the type list ../rw16_types.txt no longer exists (ITab_Storage reported unknown, it is vanilla)
   - unverified: Pickle suite Tests/Pickle (10 features, 3 passes) written, never played; ticket to file at playTests
-  - feature: needs NPT step (to ask via TM): count of things held by a storage building (ten-book limit, refused eleventh book), item hit points or a stat compared to a remembered value (hay not deteriorating in rain); AI behaviours (animals choosing the trough, two colonists on the console) and save then removal of the mod stay manual or unwritten
+  - note: NPT delivered the two missing steps (StageDecor, a060847, compiled not played); scenarios added to 08 and 09, Check-Steps clean. Animal and two-colonist AI behaviours, reading a book, and save then removal of the mod stay unwritten
   - unverified: never seen running
 session:      01a09721-3c91-72a3-8e78-5d2c507deb63
 updated:      2026-10-29, playTests[1.0.0], writeTests done (nothing played in game yet)
