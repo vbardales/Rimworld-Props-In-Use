@@ -1,0 +1,18 @@
+# The pass with the five source mods Props in Use patches, then the shared test tools.
+# Harmony is staged by the launcher; the mod itself is staged last. Alpha Props needs
+# VFE Props and Decor, which needs the Vanilla Expanded Framework. Royalty and Ideology
+# come with the game. RepossessedFurniture is taken from its own repository (the mod that
+# owns the Chinese bookcase), not from the Workshop.
+oskarpotocki.vanillafactionsexpanded.core 2023507013
+vanillaexpanded.vfepropsanddecor 2102143149
+sarg.alphapropsparks 3146268928
+leo.propsdecor 3579351912
+mlie.musicalinstruments 2274558815
+nelim.repossessedfurniture path:RepossessedFurniture/Mod
+nelim.pickletools.loadaudit path:PickleTools/LoadAudit/Mod
+nelim.pickletools.deffields path:PickleTools/DefFieldSteps/Mod
+nelim.pickletools.stagedecor path:PickleTools/StageDecor/Mod
+nelim.pickletools.inspecttabs path:PickleTools/InspectTabs/Mod
+nelim.pickletools.hoversteps path:PickleTools/HoverSteps/Mod
+nelim.pickletools.colonistrace path:PickleTools/ColonistRace/Mod
+nelim.pickletools.coatsteps path:PickleTools/CoatSteps/Mod

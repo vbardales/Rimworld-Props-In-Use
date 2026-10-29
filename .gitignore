@@ -19,3 +19,5 @@ Art/.render/
 **/Source/bin/
 **/Source/**/obj/
 **/Source/**/bin/
+Tests/Pickle/Inbox/
+Tests/Pickle/Parked/

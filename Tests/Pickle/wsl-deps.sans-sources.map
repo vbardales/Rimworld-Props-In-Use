@@ -1,0 +1,3 @@
+# The minimal pass: Core, the DLC, Harmony, Pickle, Props in Use and one shared test tool.
+# None of the six source mods is staged, so every patch has to stay dormant and add nothing.
+nelim.pickletools.loadaudit path:PickleTools/LoadAudit/Mod
