@@ -22,7 +22,7 @@ remaining:
   - note: 1.a duplicate check done 2026-10-29 (Search-Workshop, About.xml refs to sarg.alphapropsparks|Leo.PropsDecor, 9416 folders): no duplicate; only ours (Props as Style, Props as Deco), Better Architect Menu, Decor into Props (ferny, unrelated)
   - note: Workshop item 3811402847 published as 0.1.0, hidden (owner, 2026-10-29)
   - note: GitHub repo vbardales/Rimworld-Props-In-Use public, pushed e1b7f58 on 2026-10-28
-  - open: 2.a Art/ModIcon-source.png and 2.e Art/Preview-source.png to be delivered by owner (full resolution); none created by session
+  - note: 2.a Art/ModIcon-source.png and 2.e Art/Preview-source.png delivered by owner (both 1254x1254, committed in e1b7f58); none created by session
   - unverified: never seen running
 session:      01a09721-3c91-72a3-8e78-5d2c507deb63
 updated:      2026-10-29, makeSources, waiting for owner art sources
