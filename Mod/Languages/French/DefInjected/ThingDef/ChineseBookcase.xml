@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-  <SZ_ZhuangShiShuJia.description MayRequire="nelim.repossessedfurniture">Une bibliothèque chinoise pouvant contenir dix livres. Les livres rangés apportent les avantages habituels des bibliothèques pour la lecture et la recherche. Les livres dessinés font partie du décor original : consultez l'onglet du contenu pour connaître les livres réellement stockés. Videz et déconstruisez cette bibliothèque avant de retirer Props in Use.</SZ_ZhuangShiShuJia.description>
+  <SZ_ZhuangShiShuJia.description MayRequire="nelim.repossessedfurniture">Une bibliothèque chinoise pouvant contenir dix livres. Les livres rangés apportent les avantages habituels des bibliothèques pour la lecture et la recherche. Les livres dessinés font partie du décor original : l'onglet du contenu indique les livres réellement stockés. Vider et déconstruire cette bibliothèque avant de retirer Props in Use.</SZ_ZhuangShiShuJia.description>
 </LanguageData>

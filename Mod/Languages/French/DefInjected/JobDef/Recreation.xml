@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Les deux activités de loisir de Mod/Patches/MiniatureRecreation.xml. Le texte suit la forme
+       des reportString du jeu de base en français : un verbe à l'infinitif. -->
+
+  <PIU_PlayGameConsole.reportString>jouer à la console.</PIU_PlayGameConsole.reportString>
+  <PIU_ListenHamRadio.reportString>écouter la radio.</PIU_ListenHamRadio.reportString>
+
+</LanguageData>
