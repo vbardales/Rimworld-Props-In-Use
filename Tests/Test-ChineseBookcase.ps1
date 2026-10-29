@@ -71,22 +71,22 @@ foreach ($case in @('absent-owner','absent-core-bookcase','wrong-footprint','abs
   }
   $before=$negative.OuterXml; Apply-Patch $negative; Assert ($negative.OuterXml -ceq $before) "No-op $case"
 }
-$manifest=Get-Content (Join-Path $Project 'CHINESE_MANIFEST.json') -Raw | ConvertFrom-Json
+$manifest=Get-Content (Join-Path $Project 'Docs/CHINESE_MANIFEST.json') -Raw | ConvertFrom-Json
 Assert ($manifest.retainedDefs.Count -eq 0 -and $manifest.importedAssets.Count -eq 0 -and $manifest.importedAssemblies.Count -eq 0) 'No upstream import'
 Assert (@($manifest.definitions | Where-Object decision -eq 'retained-function-only').Count -eq 1) 'Exactly one selected function'
 Assert (@($manifest.definitions | Group-Object type,defName | Where-Object Count -gt 1).Count -eq 0) 'Unique source manifest keys'
 Assert (@(Get-ChildItem $mod -Recurse -Filter *.dll).Count -eq 0) 'No assembly bundled'
 $about=Load-Xml (Join-Path $mod 'About/About.xml')
 Assert ($about.ModMetaData.loadAfter.li -contains 'nelim.repossessedfurniture') 'Owner loads before function patch'
-Assert ($about.ModMetaData.description.StartsWith('PRIVATE LOCAL PACK')) 'Private metadata present'
+Assert (-not $about.ModMetaData.description.StartsWith('PRIVATE LOCAL PACK')) 'No private-pack notice on a public mod'
 Assert ((Get-FileHash $targets[0].file).Hash -eq $ownerHash) 'Owner unchanged by tests'
 $snapshot=[xml]'<Defs />'; $null=$snapshot.DocumentElement.AppendChild($snapshot.ImportNode($out,$true))
-$effective=Join-Path $Project '.build/ChineseEffective/Defs'
+$effective=Join-Path $Project 'Build/ChineseEffective/Defs'
 $null=New-Item -ItemType Directory -Path $effective -Force
 $snapshot.Save((Join-Path $effective 'Bookcase.xml'))
-$translationDir=Join-Path $Project '.build/ChineseEffective/Languages/French/DefInjected/ThingDef'
+$translationDir=Join-Path $Project 'Build/ChineseEffective/Languages/French/DefInjected/ThingDef'
 $null=New-Item -ItemType Directory -Path $translationDir -Force
 Copy-Item -LiteralPath (Join-Path $mod 'Languages/French/DefInjected/ThingDef/ChineseBookcase.xml') -Destination (Join-Path $translationDir 'ChineseBookcase.xml')
 $summary=[ordered]@{date=(Get-Date -Format o);assertions=$script:assertions;modXmlFiles=$xmlFiles.Count;sourceDefinitions=$manifest.definitions.Count;ownerFile=$targets[0].file;ownerSha256=$ownerHash;effectiveSnapshot=(Join-Path $effective 'Bookcase.xml');coverage='XML parser and limited patch replay, not RimWorld execution';inGame='not executed'}
-$summary | ConvertTo-Json | Set-Content (Join-Path $Project '.build/Chinese-test-result.json') -Encoding utf8
+$summary | ConvertTo-Json | Set-Content (Join-Path $Project 'Build/Chinese-test-result.json') -Encoding utf8
 Write-Output ($summary | ConvertTo-Json)
