@@ -15,8 +15,7 @@
     "backgroundFile": "Preview-source.png",
     "backgroundPosition": "center top",
     "echo": {
-        "file": "echo-concept.png",
-        "color": "var(--accent)"
+        "file": "echo-concept.png"
     },
     "icon": {
         "file": "ModIcon-source.png",
