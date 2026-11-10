@@ -12,7 +12,7 @@ Feature: Props in Use makes the Chinese bookcase hold books
     And I close all dialogs
 
   Scenario: the Chinese bookcase opens its Contents and Storage tabs
-    Given I spawn a "SZ_ZhuangShiShuJia" at (112, 216)
+    Given Nelim's Pickle Tools: I place the decor "SZ_ZhuangShiShuJia" owned by the colonists at (112, 216)
     When Nelim's Pickle Tools: I select the thing of def "SZ_ZhuangShiShuJia" at (112, 216)
     And I open the "ITab_ContentsBooks" inspect tab
     Then the "ITab_ContentsBooks" inspect tab is open
@@ -21,19 +21,19 @@ Feature: Props in Use makes the Chinese bookcase hold books
     And no errors were logged
 
   Scenario: the Chinese bookcase survives a save and a reload
-    Given I spawn a "SZ_ZhuangShiShuJia" at (112, 216)
+    Given Nelim's Pickle Tools: I place the decor "SZ_ZhuangShiShuJia" owned by the colonists at (112, 216)
     When I save and reload
     Then a "SZ_ZhuangShiShuJia" is at (112, 216)
     And no errors were logged
 
   Scenario: the Chinese bookcase holds ten books and refuses an eleventh
-    Given I spawn a "SZ_ZhuangShiShuJia" at (112, 216)
+    Given Nelim's Pickle Tools: I place the decor "SZ_ZhuangShiShuJia" owned by the colonists at (112, 216)
     And Nelim's Pickle Tools: I fill the storage building "SZ_ZhuangShiShuJia" at (112, 216) with 10 things "Novel"
     Then Nelim's Pickle Tools: the storage building "SZ_ZhuangShiShuJia" at (112, 216) holds 10 things
     And Nelim's Pickle Tools: the storage building "SZ_ZhuangShiShuJia" at (112, 216) refuses another "Novel"
     And no errors were logged
 
   Scenario: the Chinese bookcase refuses an item that is not a book
-    Given I spawn a "SZ_ZhuangShiShuJia" at (112, 216)
+    Given Nelim's Pickle Tools: I place the decor "SZ_ZhuangShiShuJia" owned by the colonists at (112, 216)
     Then Nelim's Pickle Tools: the storage building "SZ_ZhuangShiShuJia" at (112, 216) refuses another "WoodLog"
     And no errors were logged

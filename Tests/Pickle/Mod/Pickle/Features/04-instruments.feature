@@ -14,7 +14,7 @@ Feature: Props in Use lets a colonist play each miniature instrument
     And I close all dialogs
 
   Scenario Outline: a colonist plays the <instrument> of Miniature Props and Decor
-    Given I spawn a "<instrument>" at (110, 208)
+    Given Nelim's Pickle Tools: I place the decor "<instrument>" owned by the colonists at (110, 208)
     And Nelim's Pickle Tools: the joy giver "MusicPlay" is asked what it would give "Jet"
     When Nelim's Pickle Tools: the joy giver "MusicPlay" job is forced on "Jet"
     Then "Jet" has job "MusicPlayJoy"

@@ -19,37 +19,37 @@ Feature: Props in Use makes the Alpha Props hedges strengthen the anima tree
     Then the "Plant_TreeAnima" at (112, 222) stat "MeditationFocusStrength" is 0.28
 
   Scenario: four anima hedges add four hundredths
-    Given I spawn a "AP_Hedge_Anima" at (108, 222)
-    And I spawn a "AP_Hedge_Anima" at (109, 222)
-    And I spawn a "AP_Hedge_Anima" at (110, 222)
-    And I spawn a "AP_Hedge_Anima" at (111, 222)
+    Given Nelim's Pickle Tools: I place the decor "AP_Hedge_Anima" owned by the colonists at (108, 222)
+    And Nelim's Pickle Tools: I place the decor "AP_Hedge_Anima" owned by the colonists at (109, 222)
+    And Nelim's Pickle Tools: I place the decor "AP_Hedge_Anima" owned by the colonists at (110, 222)
+    And Nelim's Pickle Tools: I place the decor "AP_Hedge_Anima" owned by the colonists at (111, 222)
     Then the "Plant_TreeAnima" at (112, 222) stat "MeditationFocusStrength" is 0.32
 
   Scenario: eight anima hedges count for four
-    Given I spawn a "AP_Hedge_Anima" at (104, 222)
-    And I spawn a "AP_Hedge_Anima" at (105, 222)
-    And I spawn a "AP_Hedge_Anima" at (106, 222)
-    And I spawn a "AP_Hedge_Anima" at (107, 222)
-    And I spawn a "AP_Hedge_Anima" at (108, 222)
-    And I spawn a "AP_Hedge_Anima" at (109, 222)
-    And I spawn a "AP_Hedge_Anima" at (110, 222)
-    And I spawn a "AP_Hedge_Anima" at (111, 222)
+    Given Nelim's Pickle Tools: I place the decor "AP_Hedge_Anima" owned by the colonists at (104, 222)
+    And Nelim's Pickle Tools: I place the decor "AP_Hedge_Anima" owned by the colonists at (105, 222)
+    And Nelim's Pickle Tools: I place the decor "AP_Hedge_Anima" owned by the colonists at (106, 222)
+    And Nelim's Pickle Tools: I place the decor "AP_Hedge_Anima" owned by the colonists at (107, 222)
+    And Nelim's Pickle Tools: I place the decor "AP_Hedge_Anima" owned by the colonists at (108, 222)
+    And Nelim's Pickle Tools: I place the decor "AP_Hedge_Anima" owned by the colonists at (109, 222)
+    And Nelim's Pickle Tools: I place the decor "AP_Hedge_Anima" owned by the colonists at (110, 222)
+    And Nelim's Pickle Tools: I place the decor "AP_Hedge_Anima" owned by the colonists at (111, 222)
     Then the "Plant_TreeAnima" at (112, 222) stat "MeditationFocusStrength" is 0.32
 
   Scenario: four gauranlen hedges add four hundredths
-    Given I spawn a "AP_Hedge_Gau" at (108, 224)
-    And I spawn a "AP_Hedge_Gau" at (109, 224)
-    And I spawn a "AP_Hedge_Gau" at (110, 224)
-    And I spawn a "AP_Hedge_Gau" at (111, 224)
+    Given Nelim's Pickle Tools: I place the decor "AP_Hedge_Gau" owned by the colonists at (108, 224)
+    And Nelim's Pickle Tools: I place the decor "AP_Hedge_Gau" owned by the colonists at (109, 224)
+    And Nelim's Pickle Tools: I place the decor "AP_Hedge_Gau" owned by the colonists at (110, 224)
+    And Nelim's Pickle Tools: I place the decor "AP_Hedge_Gau" owned by the colonists at (111, 224)
     Then the "Plant_TreeAnima" at (112, 222) stat "MeditationFocusStrength" is 0.32
 
   Scenario: four hedges of each kind add eight hundredths
-    Given I spawn a "AP_Hedge_Anima" at (108, 222)
-    And I spawn a "AP_Hedge_Anima" at (109, 222)
-    And I spawn a "AP_Hedge_Anima" at (110, 222)
-    And I spawn a "AP_Hedge_Anima" at (111, 222)
-    And I spawn a "AP_Hedge_Gau" at (108, 224)
-    And I spawn a "AP_Hedge_Gau" at (109, 224)
-    And I spawn a "AP_Hedge_Gau" at (110, 224)
-    And I spawn a "AP_Hedge_Gau" at (111, 224)
+    Given Nelim's Pickle Tools: I place the decor "AP_Hedge_Anima" owned by the colonists at (108, 222)
+    And Nelim's Pickle Tools: I place the decor "AP_Hedge_Anima" owned by the colonists at (109, 222)
+    And Nelim's Pickle Tools: I place the decor "AP_Hedge_Anima" owned by the colonists at (110, 222)
+    And Nelim's Pickle Tools: I place the decor "AP_Hedge_Anima" owned by the colonists at (111, 222)
+    And Nelim's Pickle Tools: I place the decor "AP_Hedge_Gau" owned by the colonists at (108, 224)
+    And Nelim's Pickle Tools: I place the decor "AP_Hedge_Gau" owned by the colonists at (109, 224)
+    And Nelim's Pickle Tools: I place the decor "AP_Hedge_Gau" owned by the colonists at (110, 224)
+    And Nelim's Pickle Tools: I place the decor "AP_Hedge_Gau" owned by the colonists at (111, 224)
     Then the "Plant_TreeAnima" at (112, 222) stat "MeditationFocusStrength" is 0.36
