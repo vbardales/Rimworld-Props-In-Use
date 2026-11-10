@@ -51,6 +51,7 @@
           <value>
             <thingClass>Building_Storage</thingClass>
             <surfaceType>Item</surfaceType>
+            <designationCategory>Production</designationCategory>
             <canOverlapZones>false</canOverlapZones>
             <inspectorTabs>
               <li>ITab_Storage</li>
@@ -118,6 +119,7 @@
           <value>
             <thingClass>Building_Storage</thingClass>
             <surfaceType>Item</surfaceType>
+            <designationCategory>Production</designationCategory>
             <canOverlapZones>false</canOverlapZones>
             <inspectorTabs>
               <li>ITab_Storage</li>
@@ -185,6 +187,7 @@
           <value>
             <thingClass>Building_Storage</thingClass>
             <surfaceType>Item</surfaceType>
+            <designationCategory>Production</designationCategory>
             <canOverlapZones>false</canOverlapZones>
             <inspectorTabs>
               <li>ITab_Storage</li>
@@ -252,6 +255,7 @@
           <value>
             <thingClass>Building_Storage</thingClass>
             <surfaceType>Item</surfaceType>
+            <designationCategory>Production</designationCategory>
             <canOverlapZones>false</canOverlapZones>
             <inspectorTabs>
               <li>ITab_Storage</li>
@@ -319,6 +323,7 @@
           <value>
             <thingClass>Building_Storage</thingClass>
             <surfaceType>Item</surfaceType>
+            <designationCategory>Production</designationCategory>
             <canOverlapZones>false</canOverlapZones>
             <inspectorTabs>
               <li>ITab_Storage</li>

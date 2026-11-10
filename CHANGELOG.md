@@ -56,7 +56,8 @@ the trough can stand in the pasture instead of under a roof.
 **This is the only entry in this mod that changes a price.** `thingClass` is a single field, and
 these props already carried `VFEProps.Building_SubstractsSilver`, the class that takes silver at
 build time instead of a `costList`. Taking `Building_Storage` gives that up, and the troughs would
-have become free: they get 25 wood and 400 work instead.
+have become free: they get 25 wood and 400 work instead. They are also added to the Production tab of the architect
+menu (`designationCategory`), so the player can build them.
 
 The three flowered troughs are converted like the other two. Leaving them decorative would have
 left three pure props standing, which this mod exists precisely to refuse.

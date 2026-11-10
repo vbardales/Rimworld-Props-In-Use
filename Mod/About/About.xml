@@ -20,7 +20,7 @@ WHAT IT DOES
 
 WHY THE TROUGHS COST WOOD
 
-A trough had to change its thingClass to hold storage, and the one it had was the class Vanilla Furniture Expanded uses to charge silver at build time. Losing it would have made the troughs free, so they are given 25 wood and 400 work instead - cheaper than a shelf, and without its research. All five are converted, the three filled with plastic flowers included: one function, five looks.
+A trough had to change its thingClass to hold storage, and the one it had was the class Vanilla Furniture Expanded uses to charge silver at build time. Losing it would have made the troughs free, so they are given 25 wood and 400 work instead - cheaper than a shelf, and without its research. They also appear in the Production tab of the architect menu, so you can build them. All five are converted, the three filled with plastic flowers included: one function, five looks.
 
 Every change is a guarded patch. If a source mod is absent, its patch does nothing and reports nothing. Nothing here contains another author's files.
 

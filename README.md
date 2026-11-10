@@ -52,7 +52,8 @@ resolves through `ClosestTouch`. The storage class is irrelevant to that; passab
 `VFEProps.Building_SubstractsSilver`, the class that charges silver at build time in place of a
 `costList`. Taking `Building_Storage` gives that up, and the troughs would otherwise have
 become free. They are given 25 wood and 400 work instead — cheaper than a shelf, which is 20
-stuff and 500 work but sits behind research.
+stuff and 500 work but sits behind research. They also get an entry in the Production tab of the architect menu,
+so a player can build them.
 
 All five are converted, including the three filled with plastic flowers. Leaving those three as
 scenery would have left three pure props standing, which is the one thing this mod exists to

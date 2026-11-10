@@ -20,6 +20,7 @@ showcase:     complete
 tested_on:
 workshop:     3811402847
 remaining:
+  - note: 2026-11-10 owner: troughs must be buildable (in use, yes): designationCategory Production added to the five AP_ troughs (AlphaTroughs.xml), README, CHANGELOG, About text updated; Mod/ changed since 981bc72, so 7.b and 7.c rerun (Test-Patches 175, Check-ModBasics, Check-Translations green) and 8.c troughs scenarios to replay after ticket 20261110-162155-008-d427
   - defect: 8.c triage of the 3 initial runs (Tests/Pickle/Inbox): sources EN 22 failed (MusicPlay gives no job x9, hedge strength 0.28 not 0.32 x4, AP_ troughs not buildable x5, bookcase tab hidden and no slot groups x3, EN hedge tooltip text), sources FR 2 failed (3 DefInjected errors incl. Blackboard inspectString, FR hedge tooltip text); replay each red alone after its fix
   - unverified: 8.l tested_on empty until a green run; 8.m code review not done (code_review_sha absent)
   - note: 1.a duplicate check done 2026-10-29 (Search-Workshop, About.xml refs to sarg.alphapropsparks|Leo.PropsDecor, 9416 folders): no duplicate; only ours (Props as Style, Props as Deco), Better Architect Menu, Decor into Props (ferny, unrelated)
