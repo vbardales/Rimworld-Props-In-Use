@@ -1,31 +1,23 @@
 {
-    "panel": {
-        "title": "Props in Use",
-        "titleSize": 44,
-        "titleParts": [
-            {
-                "text": "Props in Use"
-            }
-        ],
-        "copyLines": [
-            "Props that do what they look like.",
-            "Music, meditation, feeding, books."
-        ]
-    },
-    "backgroundFile": "Preview-source.png",
-    "backgroundPosition": "center top",
-    "echo": {
-        "file": "echo-concept.png"
-    },
-    "icon": {
-        "file": "ModIcon-source.png",
-        "radius": 28
-    },
-    "palette": {
-        "veil": "#2A1C12",
-        "inkPrimary": "#F6EBD8",
-        "inkSecondary": "#E8B060",
-        "accent": "#4FA3A5",
-        "badgeInk": "#17120E"
-    }
+  "panel": {
+    "title": "Nelim's Props in Use",
+    "titleParts": [
+      { "text": "Nelim's", "prefix": true },
+      { "text": "Props in Use" }
+    ],
+    "description": "Props that do what they look like. Music, meditation, feeding, books."
+  },
+  "background": { "file": "Preview-source.png" },
+  "icon": {
+    "file": "ModIcon-source.png",
+    "radius": 28
+  },
+  "echo": { "file": "echo-concept.png" },
+  "palette": {
+    "veil": "#2A1C12",
+    "inkPrimary": "#F6EBD8",
+    "inkSecondary": "#E8B060",
+    "accent": "#4FA3A5",
+    "badgeInk": "#17120E"
+  }
 }
