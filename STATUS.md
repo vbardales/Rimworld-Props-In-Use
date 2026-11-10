@@ -15,11 +15,11 @@ upstream_mod_remotes: N/A
 settings_audit: partial
 published:    yes
 dependencies: declared (none hard; six optional sources in loadAfter, 2026-10-29, rev a2f3ae5)
+workshop_required_items: n/a, not released yet
 showcase:     complete
 tested_on:
 workshop:     3811402847
 remaining:
-  - defect: 4.g workshop_required_items absent from the front matter; record `n/a, not released yet` (rule 2026-11-10, never-published mod), then replay. Back at playTests after: 3 initial Pickle results in Tests/Pickle/Inbox untriaged (sources EN 22 failed, sources FR 2 failed, minimal green), 8.m not done
   - note: 1.a duplicate check done 2026-10-29 (Search-Workshop, About.xml refs to sarg.alphapropsparks|Leo.PropsDecor, 9416 folders): no duplicate; only ours (Props as Style, Props as Deco), Better Architect Menu, Decor into Props (ferny, unrelated)
   - note: Workshop item 3811402847 published as 0.1.0, hidden (owner, 2026-10-29)
   - note: GitHub repo vbardales/Rimworld-Props-In-Use public, pushed e1b7f58 on 2026-10-28
@@ -35,7 +35,7 @@ remaining:
   - note: 8.c initial tickets filed 2026-10-29 for f7d85c4 (Mod/ and Tests/Pickle must stay still until RUN_DONE): 20261029-234904-161-82cb sources EN (Tests/Pickle/Inbox/initial-sources-en), 20261029-234905-549-5a2f minimal (initial-minimal), 20261029-234906-917-e82f sources FR (initial-sources-fr). Next: read summary.json then junit.xml of each, triage, then 8.m code review and 8.n
   - unverified: never seen running
 session:      01a09721-3c91-72a3-8e78-5d2c507deb63
-updated:      2026-11-10, replay-audit: back to declareDependencies[1.0.0], 4.g workshop_required_items missing
+updated:      2026-11-10, 4.g workshop_required_items recorded (n/a, not released yet); replay to rerun
 protocols_read_sha: 5f42770d35720b2ed8cebc37212c53f9db85bf21
 ---
 
