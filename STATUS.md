@@ -8,7 +8,7 @@ repo:         Rimworld-Props-In-Use
 remote:       https://github.com/vbardales/Rimworld-Props-In-Use.git
 visibility:   public
 detached:     no
-workflow_stage: declareDependencies[1.0.0]
+workflow_stage: playTests[1.0.0]
 licence:      original
 licence_at:   "2026-10-29: patches only, every source mod is an optional dependency (props mods, RepossessedFurniture); no source file, texture or def shipped; the Chinese source restriction (2877536640) binds RF, not this mod; owner confirmed, visibility public"
 upstream_mod_remotes: N/A
@@ -20,6 +20,8 @@ showcase:     complete
 tested_on:
 workshop:     3811402847
 remaining:
+  - defect: 8.c triage of the 3 initial runs (Tests/Pickle/Inbox): sources EN 22 failed (MusicPlay gives no job x9, hedge strength 0.28 not 0.32 x4, AP_ troughs not buildable x5, bookcase tab hidden and no slot groups x3, EN hedge tooltip text), sources FR 2 failed (3 DefInjected errors incl. Blackboard inspectString, FR hedge tooltip text); replay each red alone after its fix
+  - unverified: 8.l tested_on empty until a green run; 8.m code review not done (code_review_sha absent)
   - note: 1.a duplicate check done 2026-10-29 (Search-Workshop, About.xml refs to sarg.alphapropsparks|Leo.PropsDecor, 9416 folders): no duplicate; only ours (Props as Style, Props as Deco), Better Architect Menu, Decor into Props (ferny, unrelated)
   - note: Workshop item 3811402847 published as 0.1.0, hidden (owner, 2026-10-29)
   - note: GitHub repo vbardales/Rimworld-Props-In-Use public, pushed e1b7f58 on 2026-10-28
@@ -35,8 +37,8 @@ remaining:
   - note: 8.c initial tickets filed 2026-10-29 for f7d85c4 (Mod/ and Tests/Pickle must stay still until RUN_DONE): 20261029-234904-161-82cb sources EN (Tests/Pickle/Inbox/initial-sources-en), 20261029-234905-549-5a2f minimal (initial-minimal), 20261029-234906-917-e82f sources FR (initial-sources-fr). Next: read summary.json then junit.xml of each, triage, then 8.m code review and 8.n
   - unverified: never seen running
 session:      01a09721-3c91-72a3-8e78-5d2c507deb63
-updated:      2026-11-10, 4.g workshop_required_items recorded (n/a, not released yet); replay to rerun
-protocols_read_sha: 5f42770d35720b2ed8cebc37212c53f9db85bf21
+updated:      2026-11-10, replay-audit: playTests[1.0.0], first open 8.c
+protocols_read_sha: cd30c86b34072c4289d4fd5b65507e123aba2229
 ---
 
 # Props in Use — status
