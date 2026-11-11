@@ -1,7 +1,7 @@
 ---
 localization: complete
 translation_en: complete
-translation_fr: complete
+translation_fr: pending_review      # 2026-11-11: validation cancelled (review-translation page-header bug), redo
 mod:          Props in Use
 packageId:    nelim.propsinuse
 repo:         Rimworld-Props-In-Use
