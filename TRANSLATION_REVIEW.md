@@ -47,4 +47,4 @@ Languages: French (17 keys, 0 missing against English). English is the source si
 
 | Reviewer | Date | Revision reviewed | Corrections requested |
 |---|---|---|---|
-| Virginie | 2026-10-29 | 3694f50 | CANCELLED 2026-11-11 (page-header bug made ChatGPT report a truncated file: redo /review-translation, Virginie validates again). Was:  none (ChatGPT suggestions reviewed, none applied beyond Gauranlen capital) |
+| Virginie | 2026-11-12 | e9b5417 | Validated after /review-translation redone (3 ChatGPT passes: README sentence about RepossessedFurniture applied, reportString infinitives kept, nothing else). Earlier 2026-10-29 validation cancelled 2026-11-11 (page-header bug) |
