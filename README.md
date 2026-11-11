@@ -94,7 +94,7 @@ real books using Core 1.6 `Building_Bookcase`. RepossessedFurniture owns its ori
 ThingDef and artwork. PropsInUse declares neither and copies no source assembly.
 The original artwork already contains books; `MapMeshOnly` keeps it static and the
 Contents tab shows the actual inventory. Costs, quality, art, research and graphics
-remain the owner's. Books retain vanilla reading, room and research behavior.
+remain those of RepossessedFurniture. Books retain vanilla reading, room and research behavior.
 
 This integration is strictly private. Source edition 2877536640 is classified
 `forbidden` because About/About.xml lines 17–24 objects to unauthorized republication.
