@@ -40,7 +40,7 @@ remaining:
   - unverified: never seen running
 session:      01a09721-3c91-72a3-8e78-5d2c507deb63
 updated:      2026-11-10, replay-audit: playTests[1.0.0], first open 8.c
-protocols_read_sha: cd30c86b34072c4289d4fd5b65507e123aba2229
+protocols_read_sha: b04475c28fcbf27bd47f4ee877f08147e180efb9
 ---
 
 # Props in Use — status
