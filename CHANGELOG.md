@@ -37,11 +37,9 @@ They also stop counting as artificial construction near other foci.
 
 ### Hedges: anima and gauranlen
 
-They now strengthen the neighbouring natural foci (anima tree, animus stone, shrines) instead of
-each becoming a standalone focus. A hedge is placed by the dozen: making each one an independent
-focus would have created a forest of identical meditation points.
-
-They also stop counting as artificial construction.
+They stop counting as artificial construction near the anima tree, which used to lose strength
+the more hedges stood around it. They add no strength of their own: the base game's building
+offset ignores impassable buildings, and making the hedges passable would change the source mod.
 
 ### Troughs: 5 props
 

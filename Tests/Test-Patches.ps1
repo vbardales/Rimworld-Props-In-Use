@@ -133,13 +133,8 @@ foreach ($n in 'AP_Hedge_Anima', 'AP_Hedge_Gau') {
   Assert ((CompCount $d 'CompProperties_MeditationFocus') -eq 0) "Hedge gets no standalone focus: $n"
 }
 foreach ($t in 'Plant_TreeAnima', 'AnimusStone', 'NatureShrine_Small', 'NatureShrine_Large') {
-  $offsets = @((Def $doc $t).SelectNodes("comps/li[@Class='CompProperties_MeditationFocus']/offsets/li[@Class='FocusStrengthOffset_BuildingDefs']"))
-  # the target already carries the base game's own building offset: only this mod's two (PIU_ keys) are counted
-  $mine = @($offsets | Where-Object { $_.explanationKey -like 'PIU_FocusPer*' })
-  Assert ($mine.Count -eq 2) "Two hedge offsets of this mod on $t (found $($mine.Count))"
-  foreach ($o in $mine) {
-    Assert ($o.explanationKey -like 'PIU_FocusPer*Hedge' -and $o.explanationKeyAbstract -like 'PIU_FocusPer*HedgeAbstract') "Explanation keys on $t"
-  }
+  $mine = @((Def $doc $t).SelectNodes("comps/li[@Class='CompProperties_MeditationFocus']/offsets/li[@Class='FocusStrengthOffset_BuildingDefs'][starts-with(explanationKey,'PIU_')]"))
+  Assert ($mine.Count -eq 0) "No hedge offset of this mod on $t (impassable hedges are never counted by the base game; found $($mine.Count))"
 }
 
 # --- troughs ---------------------------------------------------------------------------------------------

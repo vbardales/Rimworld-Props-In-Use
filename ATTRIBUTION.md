@@ -57,8 +57,7 @@ redeclaring them would create duplicates in the menu.
 
 ## Royalty
 
-The hedge focus offsets target `Plant_TreeAnima`, `AnimusStone`, `NatureShrine_Small` and
-`NatureShrine_Large`. Without Royalty those defs do not exist and the guards never fire.
+The hedge patch clears `artificialForMeditationPurposes` on the two hedges, guarded on the hedge def. It targets no Royalty def.
 
 
 ## Chinese Traditional Cultural Things Expanded — optional function patch (2026-09-12)

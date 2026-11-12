@@ -19,10 +19,10 @@ its own: every line comes from Pickle or from a PickleTools tool the pass map st
 | `04-instruments` | sources, English (`@functional`) | A colonist is handed the playing job of each of the nine miniature instruments and keeps it 300 ticks, no error |
 | `05-recreation` | sources, English | The same for the game console and the ham radio (the two jobs the mod adds) |
 | `06-fountains` | sources, English | Each fountain reads the focus strength its size earns; seven fountains around an anima tree do not lower it |
-| `07-hedges` | sources, English | The anima tree reads 0.28, then +0.04 for four hedges of one kind, still +0.04 for eight, +0.08 for four of each |
+| `07-hedges` | sources, English | The anima tree reads 0.28 with no hedge, and still 0.28 with four anima hedges or four gauranlen hedges around it (they no longer weaken it) |
 | `08-troughs` | sources, English | A colonist builds each of the five troughs from wood; a hungry cow eats hay stored in one; stored hay survives a save and a reload and keeps its hit points over 2000 ticks |
 | `09-bookcase` | sources, English | The Chinese bookcase opens its Contents and Storage tabs, holds ten books and refuses an eleventh (and a log), survives a save and a reload |
-| `10-translations` | sources, each language | Trough labels, the two report strings and the hedge lines of the anima tree stat, in the language of the pass (`@english` or `@french`) |
+| `10-translations` | sources, each language | Trough labels and the two report strings, in the language of the pass (`@english` or `@french`) |
 
 Scenarios are isolated: each loads `test-colony` again. Everything is built south of Jet on cells that the save leaves free
 (`FIXTURES.md`: the ruins end at z 167, the stat scenarios sit at z 214 to 224). `07-hedges` first scenario is the control for

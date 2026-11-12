@@ -15,26 +15,26 @@ had one — the troughs are the single exception, and the section below says why
 | Miniature Props and Decor | 9 instruments | playable, through Musical Instruments (Continued) |
 | Miniature Props and Decor | game console, ham radio | recreation sources — dexterity play and solitary relaxation |
 | Alpha Props — Parks and Gardens | 7 fountains | natural meditation foci, scaled by size |
-| Alpha Props — Parks and Gardens | anima and gauranlen hedges | focus offsets feeding the natural foci nearby |
+| Alpha Props — Parks and Gardens | anima and gauranlen hedges | stop counting as artificial buildings near natural foci |
 | Alpha Props — Parks and Gardens | 5 troughs | animal feeders — storage buildings that keep feed from rotting |
 
 ## Two findings that justify the mod
 
-**The hedges already carried the stat.** `<MeditationFocusStrength>0.22</MeditationFocusStrength>`
-sits in their `statBases`, with no `CompProperties_MeditationFocus` anywhere — and that stat is
-read by nothing else. It was inert, exactly like a `joyKind` on a building that no `JoyGiverDef`
-ever serves. The author's intent was there; the game never knew.
+**The hedges counted against the anima tree.** The two hedges are artificial buildings by
+default, and the anima tree applies a penalty to artificial buildings around it, down to -0.5.
+Surrounding the tree with anima hedges, the obvious gesture, weakened it. They now stop counting.
 
 **The console lives in a file called `Buildings_Recreation.xml`,** under a recreation menu, with
 no recreation type declared on it at all.
 
-## Why offsets and not foci, for the hedges
+## Why the hedges only stop being a penalty
 
-A hedge is a linear wall you lay down by the dozen. Giving each cell its own
-`CompProperties_MeditationFocus` would have turned a garden border into a forest of identical
-meditation spots. The offset mechanism exists for precisely this case: an object you do not
-meditate on, but which strengthens what you meditate on beside it. It is what vanilla does with
-the animus stone and the nature shrines around the anima tree.
+The hedges carry a `MeditationFocusStrength` stat that nothing reads. Giving each cell its own
+focus would turn a garden border into a forest of identical meditation spots, and feeding the
+nearby foci through the base game's building offset does not work: that offset only counts
+buildings in the same room as the focus, and an impassable hedge belongs to no room. Making the
+hedges passable would change the source mod, so they are left alone and only stop weakening the
+anima tree.
 
 ## Why the troughs cost wood, when nothing else here changes a price
 
