@@ -15,6 +15,7 @@ Feature: Props in Use lets a colonist play each miniature instrument
 
   Scenario Outline: a colonist plays the <instrument> of Miniature Props and Decor
     Given Nelim's Pickle Tools: I place the decor "<instrument>" owned by the colonists at (110, 208)
+    And Nelim's Pickle Tools: I place the decor "DiningChair" owned by the colonists at (110, 207)
     And Nelim's Pickle Tools: the joy giver "MusicPlay" is asked what it would give "Jet"
     When Nelim's Pickle Tools: the joy giver "MusicPlay" job is forced on "Jet"
     Then "Jet" has job "MusicPlayJoy"
