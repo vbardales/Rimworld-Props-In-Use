@@ -15,6 +15,7 @@
        place au lieu d'emporter l'instrument. Aucun doublon avec la guitare *portee* de Mlie : ce
        sont deux objets de nature differente.
 
+LA CATEGORIE `MusicalInstruments` EST LE TROISIEME POINT (ticket 8dbc, 2026-11-12, lecture       de PerformanceManager) : Mlie construit sa liste d'instruments avec       `ThingCategoryDef.Named("MusicalInstruments").childThingDefs`. Un prop qui n'est pas dans cette       categorie n'est jamais trouve sur la carte, meme avec tous les composants : le colon ne recoit       aucun travail ("no such thing on this map").
        DEUX COMPOSANTS SONT OBLIGATOIRES, verifie par decompilation de MusicalInstruments.dll.
        `availableMapInstruments` trie la liste des instruments de la carte ainsi :
 
@@ -64,6 +65,9 @@
             <xpath>Defs/ThingDef[defName="Prop_Accordion"]</xpath>
             <value>
               <tickerType>Normal</tickerType>
+              <thingCategories>
+                <li>MusicalInstruments</li>
+              </thingCategories>
               <hasInteractionCell>True</hasInteractionCell>
               <interactionCellOffset>(0,0,-1)</interactionCellOffset>
               <socialPropernessMatters>true</socialPropernessMatters>
@@ -100,6 +104,9 @@
             <xpath>Defs/ThingDef[defName="Prop_Guzheng"]</xpath>
             <value>
               <tickerType>Normal</tickerType>
+              <thingCategories>
+                <li>MusicalInstruments</li>
+              </thingCategories>
               <hasInteractionCell>True</hasInteractionCell>
               <interactionCellOffset>(0,0,-1)</interactionCellOffset>
               <socialPropernessMatters>true</socialPropernessMatters>
@@ -138,6 +145,9 @@
             <xpath>Defs/ThingDef[defName="Prop_Oboe"]</xpath>
             <value>
               <tickerType>Normal</tickerType>
+              <thingCategories>
+                <li>MusicalInstruments</li>
+              </thingCategories>
               <hasInteractionCell>True</hasInteractionCell>
               <interactionCellOffset>(0,0,-1)</interactionCellOffset>
               <socialPropernessMatters>true</socialPropernessMatters>
@@ -191,6 +201,9 @@
                 <xpath>Defs/ThingDef[defName="Prop_Snare_Drum"]</xpath>
                 <value>
                   <tickerType>Normal</tickerType>
+                  <thingCategories>
+                    <li>MusicalInstruments</li>
+                  </thingCategories>
                   <hasInteractionCell>True</hasInteractionCell>
                   <interactionCellOffset>(0,0,-1)</interactionCellOffset>
                   <socialPropernessMatters>true</socialPropernessMatters>
@@ -231,6 +244,9 @@
             <xpath>Defs/ThingDef[defName="Prop_Trombone"]</xpath>
             <value>
               <tickerType>Normal</tickerType>
+              <thingCategories>
+                <li>MusicalInstruments</li>
+              </thingCategories>
               <hasInteractionCell>True</hasInteractionCell>
               <interactionCellOffset>(0,0,-1)</interactionCellOffset>
               <socialPropernessMatters>true</socialPropernessMatters>
@@ -267,6 +283,9 @@
             <xpath>Defs/ThingDef[defName="Prop_Trumpet"]</xpath>
             <value>
               <tickerType>Normal</tickerType>
+              <thingCategories>
+                <li>MusicalInstruments</li>
+              </thingCategories>
               <hasInteractionCell>True</hasInteractionCell>
               <interactionCellOffset>(0,0,-1)</interactionCellOffset>
               <socialPropernessMatters>true</socialPropernessMatters>
@@ -317,6 +336,9 @@
                 <xpath>Defs/ThingDef[defName="Prop_Violin"]</xpath>
                 <value>
                   <tickerType>Normal</tickerType>
+                  <thingCategories>
+                    <li>MusicalInstruments</li>
+                  </thingCategories>
                   <hasInteractionCell>True</hasInteractionCell>
                   <interactionCellOffset>(0,0,-1)</interactionCellOffset>
                   <socialPropernessMatters>true</socialPropernessMatters>
@@ -369,6 +391,9 @@
                 <xpath>Defs/ThingDef[defName="Prop_Cello"]</xpath>
                 <value>
                   <tickerType>Normal</tickerType>
+                  <thingCategories>
+                    <li>MusicalInstruments</li>
+                  </thingCategories>
                   <hasInteractionCell>True</hasInteractionCell>
                   <interactionCellOffset>(0,0,-1)</interactionCellOffset>
                   <socialPropernessMatters>true</socialPropernessMatters>
@@ -421,6 +446,9 @@
                 <xpath>Defs/ThingDef[defName="Prop_Guitar"]</xpath>
                 <value>
                   <tickerType>Normal</tickerType>
+                  <thingCategories>
+                    <li>MusicalInstruments</li>
+                  </thingCategories>
                   <hasInteractionCell>True</hasInteractionCell>
                   <interactionCellOffset>(0,0,-1)</interactionCellOffset>
                   <socialPropernessMatters>true</socialPropernessMatters>

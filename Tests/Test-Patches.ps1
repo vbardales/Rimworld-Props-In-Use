@@ -94,6 +94,7 @@ foreach ($n in $instruments) {
   Assert ($null -ne $d) "Source def present: $n"
   Assert ((CompCount $d 'MusicalInstruments.CompProperties_MusicalInstrument') -eq 1) "One instrument comp on $n"
   Assert ((CompCount $d 'MusicalInstruments.CompProperties_MusicSpot') -eq 1) "One music spot comp on $n"
+  Assert (@($d.thingCategories.li) -contains 'MusicalInstruments') "In the MusicalInstruments category (Mlie lists instruments through it): $n"
   Assert ($d.building.joyKind -eq 'Music') "Music joyKind on $n"
   Assert ($d.hasInteractionCell -eq 'True') "Interaction cell on $n"
 }
